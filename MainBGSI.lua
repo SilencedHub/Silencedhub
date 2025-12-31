@@ -59,22 +59,7 @@ v6.Update:AddButton({
         })
     end
 })
-v6.Update:AddParagraph({
-    Title = "Update v1.4",
-    Content = "- Changed UI So It Works With All Executors\n- Added OG Egg To Egg TP\n- Removed Rifts Tab\n- Added Auto Buy Dice Shop"
-})
-v6.Update:AddParagraph({
-    Title = "Update v1.3",
-    Content = "- Added Auto Admin Abuse Egg TP (When The Egg Spawns)\n- Added The New Codes To (Redeem All Codes)\n- Updated Auto Sell (Removed Teleport)\n- Added Auto Buy Tab\n- Added Auto Dice Roll (BoardGame)\n- Added Auto Complete Minigames\n- Removed Auto Dark And Halloween Wheel Spin"
-})
-v6.Update:AddParagraph({
-    Title = "Update v1.2",
-    Content = "- Added Auto Open Mystery Box\'s\n- Added Unlock All World 2 Islands (Must Have World 2 Already)\n- Added Auto Use Tickets (Spin, Festival, Dark, Halloween)\n- Added Secret Hatch Webhook"
-})
-v6.Update:AddParagraph({
-    Title = "Update v1.1",
-    Content = "- Added Auto Summon Rifts\n- Auto Buy Flavours and Auto Sell\n- New Teleporting System For All World 1 Islands\n- Bug fixes\n- Optimized Performance For All Auto Farm Features"
-})
+
 v6.Main:AddParagraph({
     Title = "Depending On Your Executor eg., (Xeno, Solara)",
     Content = "\239\191\189\239\191\189\239\184\143 Not All Features Will Work Because Of Low sUNC/UNC \226\154\160\239\184\143"
@@ -116,7 +101,12 @@ local vu7 = {
     "lucky",
     "release",
     "ogbgs",
-    "adminabuse"
+    "adminabuse",
+    "2xinfinity",
+    "elf",
+    "jolly",
+    "christmas",
+    "throwback"
 }
 local v8 = v6.Main:AddSection("Codes/Worlds")
 v8:AddButton({
@@ -282,7 +272,9 @@ local vu34 = {
     ["Cyber Egg"] = CFrame.new(- 94, 9, - 63),
     ["Neon Egg"] = CFrame.new(- 83, 10, - 58),
     ["Infinity Egg"] = CFrame.new(- 99, 8, - 27),
-    ["OG Egg"] = CFrame.new(69, 8, 27)
+    ["OG Egg"] = CFrame.new(69, 8, 27),
+    ["New Years Egg"] = CFrame.new(83, 9, -13),
+    
 }
 local v35 = v6.Eggs:AddSection("Egg Teleport")
 local vu36 = "Common Egg"
@@ -305,7 +297,8 @@ v35:AddDropdown("EggDropdown", {
         "Cyber Egg",
         "Neon Egg",
         "Infinity Egg",
-        "OG Egg"
+        "OG Egg",
+        "New Years Egg"    
     },
     Multi = false,
     Default = 1,
