@@ -1,1 +1,1297 @@
---[[ v1.0.0 https://wearedevs.net/obfuscator ]] return(function(...)local i={"\117\054\090\047\097\121\078\066\055\043\122\081\055\048\078\108\055\103\061\061";"\055\052\072\102\114\052\118\115\105\076\112\061","\055\102\081\053\075\084\076\100\114\121\065\080\075\052\067\084\111\103\061\061","\114\052\119\086\114\071\043\108\122\048\056\061";"\122\121\111\116\075\047\119\098\085\102\104\053\111\069\118\054\076\085\076\061";"\114\052\072\108\117\052\076\061";"\122\048\078\051\117\080\056\061","\048\043\119\065\122\071\053\061";"\114\052\119\084\114\102\078\118\117\047\055\061","\117\052\119\067\122\102\120\069\055\047\090\086\122\066\061\061";"\079\121\119\081\085\072\114\100\055\104\118\057\111\084\114\086","\055\047\111\089\117\080\122\090";"\114\071\088\066\057\071\120\049","\048\043\119\089\122\048\101\067\114\052\072\108\117\052\076\061","\071\085\078\050\101\080\078\104\057\104\120\066\114\083\087\080\075\090\067\078","\055\080\101\051\075\071\088\110","\055\052\120\067\117\052\066\061","\105\047\089\115\111\080\078\080\120\054\101\108\057\084\104\088\120\066\061\061","\116\048\090\122\117\115\118\067\122\104\090\111\105\047\122\065","\116\108\087\090\122\107\112\118\116\087\061\061","";"\048\043\119\110\057\066\061\061";"\055\115\111\069\117\071\111\069\057\048\101\067\057\047\100\090";"\067\077\054\102\049\116\065\056\056\056\043\083\057\089\116\051\118\055\066\068\083\111\111\082\065\066\070\088\109\120\109\085\116\047\111\084\102\055\119\068\112\088\056\072\107\074\116\110\078\056\101\047\100\122\068\122\078\115\081\090\067\101\054\100\121\074\047\082\072\078\087\090\085\102\069\057\117\082\076\120\104\054\101\072\104\068\117\077\112\106\121\113\081\071\109\055\122\112\112\099\066\075\055\111\121\049\078\068\069\075\100\052\049\104\098\117\052\074\113\048","\081\048\122\089\097\111\120\085\105\048\087\088\076\080\118\069\075\105\061\061","\116\087\061\061","\117\071\072\069\075\103\061\061";"\079\102\101\069\055\121\114\090\114\103\061\061","\117\083\056\061","\048\043\119\118\117\047\101\090\097\103\061\061";"\122\115\072\089\122\105\061\061","\111\080\103\115\114\076\089\122\117\071\069\080\101\090\120\121\081\090\103\061","\117\052\111\086","\057\110\090\069\122\105\061\061","\120\121\078\071\097\071\072\078\075\052\067\076\055\043\111\112";"\117\083\121\061";"\122\115\043\067\114\052\120\112";"\057\115\119\086\057\115\072\069";"\076\121\120\067\057\047\067\112\111\102\056\084\117\102\067\112","\079\069\121\115\105\043\087\080\085\121\089\089\105\115\104\043","\111\052\072\089\055\052\111\051\056\121\101\090\114\052\111\054\114\052\111\104\056\105\061\061";"\122\047\100\068\117\080\056\061","\055\047\072\086\122\052\119\089";"\122\080\120\043\057\087\061\061","\081\071\118\052\120\043\101\112\075\076\067\065\116\071\101\083\071\052\053\061";"\122\111\072\076\081\076\057\080\079\083\101\088\122\090\120\084\055\066\061\061","\057\115\067\067\055\087\061\061"}for b,L in ipairs({{-547006-(-547007);-829905-(-829952)};{-146577+146578;37524+-37488},{415947+-415910;383909+-383862}})do while L[88989-88988]<L[42205-42203]do i[L[362726+-362725]],i[L[-828303+828305]],L[1001922+-1001921],L[-909866-(-909868)]=i[L[584634+-584632]],i[L[-210456+210457]],L[996897-996896]+(-771399+771400),L[552033-552031]-(-1019171+1019172)end end local function b(b)return i[b-(349733-337213)]end do local b=i local L=string.sub local T=type local C=string.char local x={C=-602162-(-602195);["\051"]=-756221+756271;f=-956539-(-956546);k=720449-720447,M=-357084+357095;q=1013773+-1013710;["\057"]=132343-132319,v=849107-849066;G=735783-735761,J=239118-239059;s=233421+-233367,R=-421081+421141,j=641275+-641233;I=412781+-412771;T=-541389-(-541440),K=-907177+907203,b=769731+-769716,["\054"]=300923+-300888,S=174901-174898,["\055"]=416729-416701;O=775338-775320,h=-153578+153614;r=955297+-955268;["\052"]=-357599+357605,["\047"]=-971424+971462,F=212949+-212918,L=431962+-431942;w=779215+-779154,i=-942864-(-942880);l=-652143-(-652177),e=57512-57495,X=687208-687151,a=-1036250-(-1036280),Q=896579-896567;d=-346167-(-346216);["\050"]=-60840+60898;A=650872-650828;["\053"]=-991806-(-991862);c=-1005282+1005344,U=-357864-(-357883),z=-989529-(-989554);["\049"]=45152+-45109;t=-528043+528057,N=683572+-683563,Z=-192169-(-192206),m=324147+-324146;g=281400-281400,y=202763-202759,o=616002-615981;Y=790471+-790426;P=359970+-359915,W=831362-831330,["\043"]=1032228-1032175,H=-963187-(-963192);u=-1039239+1039266;n=-517052-(-517091);["\048"]=504666-504643,p=-761683+761723,E=536981+-536929,V=-117471+117517;["\056"]=-482071+482079,x=-92986-(-92999),D=374416+-374369,B=841822-841774}local j=table.insert local M=table.concat local R=string.len local e=math.floor for i=143398+-143397,#b,332083+-332082 do local V=b[i]if T(V)=="\115\116\114\105\110\103"then local T=R(V)local u={}local Z=-301544+301545 local Q=253559-253559 local r=-412705+412705 while Z<=T do local i=L(V,Z,Z)local b=x[i]if b then Q=Q+b*(-297118-(-297182))^((-992085+992088)-r)r=r+(248632+-248631)if r==926187-926183 then r=875661-875661 local i=e(Q/(8066+57470))local b=e((Q%(793654-728118))/(199683-199427))local L=Q%(569120+-568864)j(u,C(i,b,L))Q=776593-776593 end elseif i=="\061"then j(u,C(e(Q/(-497727+563263))))if Z>=T or L(V,Z+(-81735+81736),Z+(305616-305615))~="\061"then j(u,C(e((Q%(-63402+128938))/(679436-679180))))end break end Z=Z+(534146-534145)end b[i]=M(u)end end end return(function(i,T,C,x,j,M,R,Y,m,Q,t,u,S,Z,J,k,L,V,e,c,r,z)r,u,m,k,Q,S,Z,L,z,V,e,c,J,Y,t=function(i)local b,L=-966159+966160,i[-1013829+1013830]while L do V[L],b=V[L]-(-360941-(-360942)),b+(455498+-455497)if 999786+-999786==V[L]then V[L],e[L]=nil,nil end L=i[b]end end,function()Z=(1001605+-1001604)+Z V[Z]=-87743+87744 return Z end,function(i,b)local T=Q(b)local C=function(C,x,j)return L(i,{C,x;j},b,T)end return C end,function(i,b)local T=Q(b)local C=function(C,x)return L(i,{C,x},b,T)end return C end,function(i)for b=40298+-40297,#i,-717717-(-717718)do V[i[b]]=(358691+-358690)+V[i[b]]end if C then local L=C(true)local T=j(L)T[b(-876906-(-889445))],T[b(44869+-32338)],T[b(386764+-374200)]=i,r,function()return 2873783-589921 end return L else return x({},{[b(-632814+645345)]=r;[b(-452521-(-465060))]=i,[b(-652124-(-664688))]=function()return-931834+3215696 end})end end,function(i)V[i]=V[i]-(-26652+26653)if V[i]==1045177+-1045177 then V[i],e[i]=nil,nil end end,162966-162966,function(L,C,x,j)local y,X,D,B,o,J,F,d,g,Q,I,O,P,R,A,q,W,Z,U,w,p,r,H,G,s,v,V,n,N,E,h,f,l,a while L do if L<-986092+11154924 then if L<5590583-922566 then if L<1464125-(-797553)then if L<1037162-(-162864)then if L<845217+75851 then if L<1166288-888484 then if L<-941164+1168313 then g=u()d=u()L=i[b(319922+-307368)]I={}s=nil D=Y(15190159-653797,{d,E;f,J})e[d]=I X={}I=u()J=S(J)B=b(595217+-582678)G=nil P=b(475623+-463091)e[I]=D D={}e[g]=D D=i[P]o=nil N=b(918326-905803)n=nil F=e[g]v=nil W={[B]=F,[N]=o}P=D(X,W)p=nil J=b(44872-32306)Q=P R={}D=z(13912641-(-605499),{g,d,H,E,f;I})r=nil H=S(H)r=i[J]f=S(f)G=6800619500758-764024 v=b(-293128-(-305668))p=i[v]f=b(712847+-700314)g=S(g)d=S(d)Z=D I=S(I)E=S(E)E=Z(f,G)f=b(666458+-653921)n=Q[E]Z=nil f=p[f]E=true Q=nil v={f(p,n,E)}J=r(T(v))r=J()else Q=554265+-554013 Z=e[x[-153841+153844]]L=16434341-489573 V=Z*Q Z=-207691-(-207948)R=V%Z e[x[-310905-(-310908)]]=R end else y=b(880691+-868126)L=i[y]g=b(-75001-(-87546))D=i[g]y=L(D)L=b(-415343-(-427881))i[L]=y L=2589934-1008412 end else if L<982956+89631 then D=-583586-(-583586)L=-664800+15017197 d=#s I=d==D else Q=b(-222062+234624)L=i[b(362220+-349665)]Z=i[Q]Q=b(99407+-86886)V=Z[Q]Q=e[x[337422-337421]]Z={V(Q)}R={T(Z)}end end else if L<-1041211+2620791 then if L<540460-(-938021)then L=e[x[-434292-(-434299)]]L=L and 10111171-(-501221)or-722085+3474473 else L=e[x[-267368-(-267378)]]Z=e[x[262926+-262915]]V[L]=Z L=e[x[-428713+428725]]Z={L(V)}R={T(Z)}L=i[b(-539045-(-551593))]end else if L<1403807-(-262300)then L=7329070-(-346031)else R=b(-735503-(-748063))L=i[R]r=b(667005-654440)V=e[x[-933249+933253]]E=m(13183355-(-311351),{})Q=i[r]n=b(39372+-26846)v=i[n]n={v(E)}p={T(n)}v=988878+-988876 J=p[v]r=Q(J)Q=b(499179+-486650)Z=V(r,Q)V={Z()}R=L(T(V))V=R Z=e[x[-89889-(-89894)]]R=Z L=Z and 4545691-(-699137)or 14724267-(-637223)end end end else if L<-261612+4309580 then if L<2543719-(-849548)then if L<2614873-(-113530)then if L<3225695-876845 then L=4251523-(-907919)else Q=-651160+651237 Z=e[x[845225-845223]]V=Z*Q Z=15359221099398-(-389225)R=V+Z Z=-61149-(-61150)V=35184372568209-479377 L=R%V e[x[698176-698174]]=L V=e[x[937943+-937940]]L=-340599+615403 R=V~=Z end else Z=875979-875978 L={}Q=e[x[-854340+854349]]V=L r=Q Q=23979+-23978 J=Q Q=-25504+25504 L=-280034+16726192 p=J<Q Q=Z-J end else if L<756032+2700170 then f=f+G s=not H n=f<=E n=s and n s=f>=E s=H and s n=s or n s=10774380-(-809161)L=n and s n=967700+12867623 L=L or n else I=d X=I L=936381+10411401 s[I]=X I=nil end end else if L<-980961+5456644 then if L<499484+3905578 then L=a R=U L=-55660+10868420 else L=6776078-(-899023)end else if L<4774551-211225 then a=e[Z]L=a and 9884701-(-533953)or 16527098-823748 U=a else a=L O=920739+-920738 q=N[O]O=false o=q==O U=o L=o and 16525679-(-136116)or 3807004-(-500319)end end end end else if L<8506723-989970 then if L<-954838+6430767 then if L<6065831-871670 then if L<-152483+5091368 then if L<-232718+4924815 then L=e[x[799407+-799406]]E=-474523+474778 n=-690762+690762 v=L(n,E)L=16859296-413138 Z=Q V[Z]=v Z=nil else g=u()F=616780+-616779 e[g]=l P=b(-227962+240498)R=i[P]P=b(-321880+334432)W=973559-973304 L=R[P]X=524646-524546 P=-104670-(-104671)R=L(P,X)P=u()e[P]=R X=803765-803765 o=b(511775-499210)L=e[v]R=L(X,W)X=u()N=-574057-(-574059)e[X]=R L=e[v]W=-293901+293902 B=e[P]R=L(W,B)W=u()e[W]=R R=e[v]h=630622+-630622 B=R(F,N)R=726457-726456 L=B==R R=b(280359-267830)N=b(544921+-532386)B=u()e[B]=L a=i[o]q=e[v]L=b(404080+-391527)A=-783121-(-793121)O={q(h,A)}o=a(T(O))a=b(-380824-(-393359))U=o..a L=I[L]F=N..U N=b(-12699-(-25225))L=L(I,R,F)F=u()U=c(-485347+14937966,{v,g,f,Q,Z,d;B;F;P,W;X,E})e[F]=L R=i[N]N={R(U)}L={T(N)}N=L L=e[B]L=L and 838451+10138643 or 528130+3949824 end else L=true L=L and-82778+14009278 or-766415+7946432 end else if L<-190626+5546682 then Q=e[x[-691348+691354]]L=-754448+16115938 Z=Q==V R=Z else R=b(923102+-910539)V=b(-1006772-(-1019322))L=i[R]R=L(V)R={}L=i[b(591804+-579245)]end end else if L<7204760-997388 then if L<678502+5158418 then g=not D l=l+y R=l<=w R=g and R g=l>=w g=D and g R=g or R g=5786000-974449 L=R and g R=11809113-456362 L=L or R else L=true R={}e[x[273609-273608]]=L L=i[b(906490+-893962)]end else if L<6562064-(-607739)then B=S(B)W=S(W)X=S(X)L=4512501-(-970902)N=nil F=S(F)P=S(P)g=S(g)else L=i[b(107288-94721)]R={}end end end else if L<8701483-560316 then if L<602756+7404333 then if L<131749+7760661 then if L<275115+7504814 then L=true L=L and-685743+15485437 or-295185+13773556 else v=-210551-(-210806)J=-671981+35184372760813 L={}e[x[-64416+64418]]=L R=e[x[-397974+397977]]r=R R=Z%J e[x[68575-68571]]=R p=Z%v n=b(-882968+895493)v=631093+-631091 J=p+v e[x[873785-873780]]=J L=3370992-(-54573)v=i[n]n=b(309247+-296705)p=v[n]n=688072-688071 v=p(V)f=-921626-(-921627)p=b(-517160-(-529690))Q[Z]=p p=-711912-(-711968)E=v G=f f=1000342+-1000342 H=G<f f=n-G end else L=R and 2929352-963204 or-928740+2322439 end else if L<422208+7643991 then D=b(-72872-(-85410))L=i[D]D=b(-876475+889020)i[D]=L L=-729464+2310986 else s=b(134104+-121542)L=12190639-(-179152)H=i[s]s=b(-784026+796548)G=H[s]E=G end end else if L<414175+8514943 then if L<892328+7953434 then Z=u()V=C L=true e[Z]=L Q=b(-1009905-(-1022430))R=i[Q]Q=b(129227-116681)L=R[Q]Q=u()r=u()e[Q]=L L=c(-809586+6238328,{})v=b(-438470+450996)e[r]=L J=u()L=false n=t(-11799+6197662,{J})e[J]=L p=i[v]v=p(n)L=v and-124689+9271727 or-276221+11709986 R=v else R={Z}L=i[b(-310471+323020)]end else if L<9708393-278593 then p=e[J]L=528574+10905191 R=p else L=14563313-275689 end end end end end else if L<-260368+13948991 then if L<11931429-562115 then if L<10723011-(-271594)then if L<299756+10506757 then if L<892782+9788570 then if L<9645324-(-944031)then o=-791788-(-791789)a=N[o]L=-112760+15816110 U=a else V=b(519093+-506530)L=i[V]Z=e[x[381063-381055]]Q=42071+-42071 V=L(Z,Q)L=2592460-(-159928)end else f=b(907638-895116)E=i[f]L=13320450-483635 R=E end else if L<9897639-(-989189)then e[Z]=R L=156026+6345258 else U=e[Z]L=U and 3817590-(-844152)or 10165845-(-646915)R=U end end else if L<-793870+12049520 then if L<532470+10509369 then R=2988273-(-903294)Z=b(-906429+918953)Q=16274037-(-172057)V=Z^Q L=R-V V=L R=b(697299+-684758)L=R/V R={L}L=i[b(-683213-(-695747))]else L=true L=L and 4323111-(-104313)or 13875048-(-81518)end else if L<-144083+11494738 then X=not P d=d+g I=d<=D I=X and I X=d>=D X=P and X I=X or I X=3362542-(-416330)L=I and X I=-44551-(-965812)L=L or I else w=e[Z]l=w L=w and 12947207-(-817521)or-110976+15774459 end end end else if L<-171507+13109769 then if L<-884266+13605379 then if L<12383577-491929 then if L<189153+11280587 then p=R v=b(625123+-612587)R=i[v]H=b(829529+-816967)n=b(722670-710108)v=b(-854278-(-866830))L=R[v]v=u()e[v]=L R=i[n]n=b(693758-681211)L=R[n]G=i[H]n=L E=G f=L L=G and 7571620-(-507919)or 12119347-(-250444)else y=b(-516932+529457)w=i[y]y=b(-586737-(-599280))l=w[y]n=f w=l(V,n)n=nil l=e[x[1001908-1001902]]y=l()d=w+y I=d+p L=3242444-(-183121)d=-172205+172461 s=I%d y=-536072+536073 p=s d=Q[Z]w=p+y l=r[w]I=d..l Q[Z]=I end else R=E L=f L=E and 13494420-657605 or 10815932-109965 end else if L<575090+12295128 then f=-239337+239340 E=u()y=b(1026002-1013437)e[E]=R s=b(975444-962918)G=97468-97403 L=e[v]R=L(f,G)f=u()L=886986+-886986 G=L L=124448-124448 I=k(11273348-269770,{})H=L e[f]=R R=i[s]s={R(I)}L={T(s)}R=-715228+715230 s=L L=s[R]I=L R=b(259216-246656)L=i[R]d=e[Q]w=i[y]y=w(I)w=b(790499+-777970)l=d(y,w)d={l()}R=L(T(d))d=u()e[d]=R L=-63626+5547029 l=e[f]w=l l=63409+-63408 y=l l=-123426+123426 R=902434+-902433 D=y<l l=R-y else L=-671437+9526436 end end else if L<14174109-691570 then if L<306527+12983550 then d=#s D=-1011097-(-1011097)I=d==D L=I and-695085-(-919726)or-492099+14844496 else R={}L=i[b(-456843-(-469404))]end else if L<12981355-(-667604)then Q=634851+11498451 Z=b(1035002-1022458)R=1208998-(-961753)V=Z^Q L=R-V R=b(34558-22000)V=L L=R/V R={L}L=i[b(-284786+297313)]else Z=e[x[24529+-24527]]Q=e[x[741858-741855]]L=7070060-(-931631)V=Z==Q R=V end end end end else if L<-233034+14846289 then if L<14271522-(-32398)then if L<14105136-152580 then if L<13449272-(-458560)then if L<545935+13235491 then w=G==H l=w L=-906418+16569901 else r=nil L=7905265-(-949734)v=nil p=nil end else R=b(785971+-773433)V=b(481460-468915)L=i[R]R=i[V]V=b(869274-856729)i[V]=L V=b(-683715+696253)L=773186+4386256 i[V]=R V=e[x[40238-40237]]Z=V()end else if L<15105791-835637 then L=c(-89314+2421008,{r})w={L()}R={T(w)}L=i[b(928386-915829)]else f=S(f)J=S(J)v=S(v)s=nil r=S(r)n=nil E=S(E)Z=S(Z)Z=nil p=nil p=b(542941-530405)H=nil I=nil d=S(d)I=-109498+109499 G=nil H=u()J=i[p]d=-705896+706152 Q=S(Q)v=b(-223485+236021)n=b(396276-383714)Q=nil p=b(104578+-92027)r=J[p]s={}J=u()e[J]=r E=b(-199740+212265)p=i[v]v=b(-954043-(-966595))r=p[v]v=i[n]n=b(317478-304957)p=v[n]L=10888558-(-459224)n=i[E]D=d E=b(765242-752686)v=n[E]f=u()E=u()d=-495245-(-495246)n=820138-820138 g=d e[E]=n d=-573427+573427 G={}n=172665-172663 e[f]=n n={}e[H]=G G=-435317-(-435317)P=g<d d=I-g end end else if L<850108+13625861 then if L<996274+13424462 then d=246714+-246713 D=#s I=r(d,D)d=p(s,I)I=nil D=e[H]X=-1030309-(-1030310)P=d-X g=v(P)D[d]=g d=nil L=13351406-406146 else r=-996797-(-996798)Z=e[x[-628566+628567]]J=-683821+683823 Q=Z(r,J)Z=585665+-585664 V=Q==Z L=V and 8431435-429744 or 13192278-(-495623)R=V end else if L<-516606+15048528 then L=e[x[70953-70952]]V=C[-269810+269811]Q=L Z=C[-907965+907967]L=Q[Z]L=L and 12378463-(-535598)or 543194+7261474 else V=e[x[-580140+580141]]R=#V V=-881154-(-881154)L=R==V L=L and 2910329-443932 or-394177+1492012 end end end else if L<-550196+16455324 then if L<15932747-231961 then if L<15634085-(-2445)then if L<15513920-172095 then D=-512709-(-512715)L=e[v]y=-1009626-(-1009627)w=L(y,D)L=b(-279356+291894)D=b(-492134+504672)i[L]=w y=i[D]D=176602-176600 L=y>D L=L and 690166+-411392 or 7097017-(-914293)else L=-989874+2383573 V=nil e[x[-451843-(-451848)]]=R end else e[Z]=l L=e[Z]L=L and 9192126-(-306532)or 227875+16289241 end else if L<15111048-(-775814)then e[Z]=U O=e[W]h=-240197+240198 q=O+h o=N[q]a=G+o o=-617265+617521 L=a%o G=L q=e[X]o=H+q L=-372566+6873850 q=-913721+913977 a=o%q H=a else Q=-589916+589948 Z=e[x[-490252-(-490255)]]G=601707+-601694 V=Z%Q L=126925+970910 E=-208539-(-208541)r=e[x[-36573+36577]]v=e[x[420357+-420355]]I=e[x[1024971+-1024968]]s=I-V I=-406309-(-406341)H=s/I f=G-H n=E^f p=v/n G=358011-357755 J=r(p)E=-495317-(-495573)n=960987+-960986 r=4295188580-221284 Q=J%r J=-484731-(-484733)r=J^V Z=Q/r r=e[x[-264987+264991]]v=Z%n n=4295469221-501925 p=v*n J=r(p)v=319825-254289 r=e[x[-846852+846856]]p=r(Z)Q=J+p J=494791+-429255 r=Q%J p=Q-r J=p/v Q=nil v=-2170-(-2426)p=r%v n=r-p v=n/E Z=nil E=831964-831708 n=J%E V=nil r=nil f=J-n E=f/G J=nil f={p;v,n;E}E=nil e[x[368013-368012]]=f p=nil v=nil n=nil end end else if L<520116+15934216 then if L<15621771-(-636952)then Q=894978-894977 Z=e[x[765882+-765879]]V=Z~=Q L=V and 15583633-(-313897)or 366292+-91488 else v=not p Q=Q+J Z=Q<=r Z=v and Z v=Q>=r v=p and v Z=v or Z v=4164273-(-523251)L=Z and v Z=-720689+2273601 L=L or Z end else if L<17610002-964619 then L=true L=-775395+14731961 else O=106082+-106080 L=4424412-117089 q=N[O]O=e[F]o=q==O U=o end end end end end end end L=#j return T(R)end,function(i,b)local T=Q(b)local C=function(C,x,j,M,R)return L(i,{C,x;j,M;R},b,T)end return C end,{},{},function(i,b)local T=Q(b)local C=function(C,x,j,M)return L(i,{C;x;j,M},b,T)end return C end,function(i,b)local T=Q(b)local C=function(...)return L(i,{...},b,T)end return C end,function(i,b)local T=Q(b)local C=function()return L(i,{},b,T)end return C end,function(i,b)local T=Q(b)local C=function(C)return L(i,{C},b,T)end return C end return(J(670682+8173392,{}))(T(R))end)(getfenv and getfenv()or _ENV,unpack or table[b(-900780-(-913302))],newproxy,setmetatable,getmetatable,select,{...})end)(...)
+-- ts file was generated at discord.gg/25ms
+
+
+local vu1 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local v2 = loadstring(game:HttpGet("https://raw.githubusercontent.com/SilencedHub/Silencedhub/refs/heads/main/SaveManager.lua"))()
+local v3 = loadstring(game:HttpGet("https://raw.githubusercontent.com/SilencedHub/Silencedhub/refs/heads/main/InterfaceManager.lua"))()
+local v4 = vu1
+local v5 = vu1.CreateWindow(v4, {
+    Title = "Silenced Bgsi",
+    SubTitle = "Version: BETA",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+local v6 = {
+    Update = v5:AddTab({
+        Title = "Changelog",
+        Icon = "rbxassetid://85502241059648"
+    }),
+    Main = v5:AddTab({
+        Title = "Main",
+        Icon = "rbxassetid://79927907097265"
+    }),
+    AutoFarm = v5:AddTab({
+        Title = "Auto Farm",
+        Icon = "rbxassetid://134753546344234"
+    }),
+    Minigames = v5:AddTab({
+        Title = "Minigames",
+        Icon = "rbxassetid://16781755256"
+    }),
+    Buy = v5:AddTab({
+        Title = "Auto Buy",
+        Icon = "rbxassetid://11807308234"
+    }),
+    Eggs = v5:AddTab({
+        Title = "Eggs",
+        Icon = "rbxassetid://11637882493"
+    }),
+    Teleport = v5:AddTab({
+        Title = "Teleport",
+        Icon = "rbxassetid://11715804797"
+    }),
+    Settings = v5:AddTab({
+        Title = "Settings",
+        Icon = "settings"
+    })
+}
+v6.Update:AddButton({
+    Title = "View Latest Update",
+    Description = "Check what\'s new",
+    Callback = function()
+        vu1:Notify({
+            Title = "Changelog",
+            Content = "Latest: v0.01 - Added Auto blow, auto collect, auto enchant and Much more!",
+            Duration = 5
+        })
+    end
+})
+v6.Update:AddParagraph({
+    Title = "Update v1.4",
+    Content = "- Changed UI So It Works With All Executors\n- Added OG Egg To Egg TP\n- Removed Rifts Tab\n- Added Auto Buy Dice Shop"
+})
+v6.Update:AddParagraph({
+    Title = "Update v1.3",
+    Content = "- Added Auto Admin Abuse Egg TP (When The Egg Spawns)\n- Added The New Codes To (Redeem All Codes)\n- Updated Auto Sell (Removed Teleport)\n- Added Auto Buy Tab\n- Added Auto Dice Roll (BoardGame)\n- Added Auto Complete Minigames\n- Removed Auto Dark And Halloween Wheel Spin"
+})
+v6.Update:AddParagraph({
+    Title = "Update v1.2",
+    Content = "- Added Auto Open Mystery Box\'s\n- Added Unlock All World 2 Islands (Must Have World 2 Already)\n- Added Auto Use Tickets (Spin, Festival, Dark, Halloween)\n- Added Secret Hatch Webhook"
+})
+v6.Update:AddParagraph({
+    Title = "Update v1.1",
+    Content = "- Added Auto Summon Rifts\n- Auto Buy Flavours and Auto Sell\n- New Teleporting System For All World 1 Islands\n- Bug fixes\n- Optimized Performance For All Auto Farm Features"
+})
+v6.Main:AddParagraph({
+    Title = "Depending On Your Executor eg., (Xeno, Solara)",
+    Content = "\239\191\189\239\191\189\239\184\143 Not All Features Will Work Because Of Low sUNC/UNC \226\154\160\239\184\143"
+})
+local vu7 = {
+    "maidnert",
+    "ripsoulofplant",
+    "halloween",
+    "superpuff",
+    "cornmaze",
+    "autumn",
+    "obby",
+    "retroslop",
+    "milestones",
+    "season7",
+    "bugfix",
+    "plasma",
+    "update16",
+    "season6",
+    "fishfix",
+    "onemorebonus",
+    "fishe",
+    "world3",
+    "update15",
+    "update13",
+    "update12",
+    "update11",
+    "update10",
+    "update9",
+    "update8",
+    "update7",
+    "update6",
+    "update5",
+    "update4",
+    "update3",
+    "update2",
+    "sylentlyssorry",
+    "easter",
+    "lucky",
+    "release",
+    "ogbgs",
+    "adminabuse"
+}
+local v8 = v6.Main:AddSection("Codes/Worlds")
+v8:AddButton({
+    Title = "Redeem All Codes",
+    Description = "Redeems all available codes automatically",
+    Callback = function()
+        local vu9 = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
+        local v10, v11, v12 = ipairs(vu7)
+        while true do
+            local vu13
+            v12, vu13 = v10(v11, v12)
+            if v12 == nil then
+                break
+            end
+            pcall(function()
+                vu9:InvokeServer("RedeemCode", vu13)
+            end)
+            wait(0.1)
+        end
+        vu1:Notify({
+            Title = "Codes Redeemed",
+            Content = "All codes have been redeemed!",
+            Duration = 3
+        })
+    end
+})
+local vu14 = {
+    Spawn = CFrame.new(58, 22, - 71),
+    ["Floating Island"] = CFrame.new(- 16, 423, 143),
+    ["Outer Space"] = CFrame.new(41, 2663, - 7),
+    Twilight = CFrame.new(- 78, 6862, 88),
+    ["The Void"] = CFrame.new(16, 10146, 151),
+    Zen = CFrame.new(36, 15971, 41)
+}
+local vu15 = {
+    "Spawn",
+    "Floating Island",
+    "Outer Space",
+    "Twilight",
+    "The Void",
+    "Zen"
+}
+v8:AddButton({
+    Title = "Unlock World 1 Islands",
+    Description = "Teleports To All World 1 Islands",
+    Callback = function()
+        local v16 = game.Players.LocalPlayer
+        local vu17 = (v16.Character or v16.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart", 10)
+        if vu17 then
+            local vu18 = v16:WaitForChild("PlayerGui"):FindFirstChild("TeleportingGui")
+            if vu18 then
+                vu18.Enabled = true
+            end
+            spawn(function()
+                local v19, v20, v21 = ipairs(vu15)
+                while true do
+                    local v22
+                    v21, v22 = v19(v20, v21)
+                    if v21 == nil then
+                        break
+                    end
+                    local v23 = vu14[v22]
+                    if v23 then
+                        for _ = 1, 3 do
+                            vu17.CFrame = v23
+                            wait(0.2)
+                        end
+                        wait(0.5)
+                    end
+                end
+                if vu18 then
+                    vu18.Enabled = false
+                end
+                vu1:Notify({
+                    Title = "World 1 Unlocked",
+                    Content = "All World 1 Islands Have Been Unlocked",
+                    Duration = 3
+                })
+            end)
+        else
+            vu1:Notify({
+                Title = "Error",
+                Content = "Could not find HumanoidRootPart",
+                Duration = 3
+            })
+        end
+    end
+})
+local vu24 = {
+    Spawn = CFrame.new(9981, 26, 172),
+    ["Dice Island"] = CFrame.new(9900, 2907, 208),
+    ["Minecart Forest"] = CFrame.new(9882, 7681, 203),
+    ["Robot Factory"] = CFrame.new(9887, 13408, 227),
+    ["Hyperwave Island"] = CFrame.new(9885, 20088, 226)
+}
+local vu25 = {
+    "Spawn",
+    "Dice Island",
+    "Minecart Forest",
+    "Robot Factory",
+    "Hyperwave Island"
+}
+v8:AddButton({
+    Title = "Unlock World 2 Islands",
+    Description = "Teleports To All World 2 Islands (You Must Have World 2)",
+    Callback = function()
+        local v26 = game.Players.LocalPlayer
+        local vu27 = (v26.Character or v26.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart", 10)
+        if vu27 then
+            local vu28 = v26:WaitForChild("PlayerGui"):FindFirstChild("TeleportingGui")
+            if vu28 then
+                vu28.Enabled = true
+            end
+            spawn(function()
+                local v29, v30, v31 = ipairs(vu25)
+                while true do
+                    local v32
+                    v31, v32 = v29(v30, v31)
+                    if v31 == nil then
+                        break
+                    end
+                    local v33 = vu24[v32]
+                    if v33 then
+                        for _ = 1, 3 do
+                            vu27.CFrame = v33
+                            wait(0.2)
+                        end
+                        wait(0.5)
+                    end
+                end
+                if vu28 then
+                    vu28.Enabled = false
+                end
+                vu1:Notify({
+                    Title = "World 2 Unlocked",
+                    Content = "All World 2 Islands Have Been Unlocked",
+                    Duration = 3
+                })
+            end)
+        else
+            vu1:Notify({
+                Title = "Error",
+                Content = "Could not find HumanoidRootPart",
+                Duration = 3
+            })
+        end
+    end
+})
+local vu34 = {
+    ["Common Egg"] = CFrame.new(- 83, 9, 3),
+    ["Spotted Egg"] = CFrame.new(- 94, 9, 8),
+    ["Iceshard Egg"] = CFrame.new(- 118, 9, 10),
+    ["Spikey Egg"] = CFrame.new(- 126, 9, 6),
+    ["Magma Egg"] = CFrame.new(- 135, 9, 1),
+    ["Crystal Egg"] = CFrame.new(- 140, 9, - 7),
+    ["Lunar Egg"] = CFrame.new(- 144, 9, - 16),
+    ["Void Egg"] = CFrame.new(- 146, 9, - 26),
+    ["Hell Egg"] = CFrame.new(- 145, 9, - 36),
+    ["Nightmare Egg"] = CFrame.new(- 142, 9, - 45),
+    ["Rainbow Egg"] = CFrame.new(- 137, 9, - 54),
+    ["Snowman Egg"] = CFrame.new(- 130, 9, - 60),
+    ["Mining Egg"] = CFrame.new(- 120, 9, - 64),
+    ["Cyber Egg"] = CFrame.new(- 94, 9, - 63),
+    ["Neon Egg"] = CFrame.new(- 83, 10, - 58),
+    ["Infinity Egg"] = CFrame.new(- 99, 8, - 27),
+    ["OG Egg"] = CFrame.new(69, 8, 27)
+}
+local v35 = v6.Eggs:AddSection("Egg Teleport")
+local vu36 = "Common Egg"
+v35:AddDropdown("EggDropdown", {
+    Title = "Select Egg",
+    Values = {
+        "Common Egg",
+        "Spotted Egg",
+        "Iceshard Egg",
+        "Spikey Egg",
+        "Magma Egg",
+        "Crystal Egg",
+        "Lunar Egg",
+        "Void Egg",
+        "Hell Egg",
+        "Nightmare Egg",
+        "Rainbow Egg",
+        "Snowman Egg",
+        "Mining Egg",
+        "Cyber Egg",
+        "Neon Egg",
+        "Infinity Egg",
+        "OG Egg"
+    },
+    Multi = false,
+    Default = 1,
+    Callback = function(p37)
+        vu36 = p37
+    end
+})
+v35:AddButton({
+    Title = "Teleport To Selected Egg",
+    Description = "",
+    Callback = function()
+        if vu34[vu36] then
+            local v38 = game.Players.LocalPlayer
+            local v39 = (v38.Character or v38.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart", 10)
+            if not v39 then
+                vu1:Notify({
+                    Title = "Error",
+                    Content = "Could not find HumanoidRootPart",
+                    Duration = 3
+                })
+                return
+            end
+            v39.CFrame = vu34[vu36]
+            vu1:Notify({
+                Title = "Teleported To" .. vu36,
+                Content = "",
+                Duration = 3
+            })
+        else
+            vu1:Notify({
+                Title = "Error",
+                Content = "No CFrame found for " .. vu36,
+                Duration = 3
+            })
+        end
+    end
+})
+local v40 = v6.Eggs:AddSection("Admin Abuse Egg TP")
+local vu41 = false
+local vu42 = nil
+local function vu48()
+    local v43 = game:GetService("Workspace")
+    local v44 = game.Players.LocalPlayer.Character
+    if v44 then
+        v44 = v44:FindFirstChild("HumanoidRootPart")
+    end
+    if v44 then
+        local v45 = v43:FindFirstChild("Rendered")
+        if v45 then
+            local v46 = v45:GetChildren()
+            local v47 = 13
+            if v46[v47] then
+                if v46[v47]:FindFirstChild("Super Silly Egg") then
+                    if not vu42 then
+                        vu42 = v44.CFrame
+                    end
+                    v44.CFrame = CFrame.new(130, 8, 96)
+                elseif vu42 then
+                    v44.CFrame = vu42
+                    vu42 = nil
+                end
+            end
+        end
+    end
+end
+v40:AddToggle("AdminEggToggle", {
+    Title = "Admin Abuse Egg TP",
+    Default = false,
+    Callback = function(p49)
+        vu41 = p49
+        vu1:Notify({
+            Title = "Admin Abuse Egg",
+            Content = vu41 and "Enabled: Waiting For Admin Abuse/Super Silly Egg To Spawn" or "Disabled: No Longer Waiting For Admin Abuse/Super Silly Egg To Spawn",
+            Duration = 3
+        })
+        if vu41 then
+            vu48()
+            spawn(function()
+                while vu41 do
+                    vu48()
+                    wait(1)
+                end
+            end)
+        else
+            local v50 = game.Players.LocalPlayer.Character
+            if v50 then
+                v50 = v50:FindFirstChild("HumanoidRootPart")
+            end
+            if v50 and vu42 then
+                v50.CFrame = vu42
+                vu42 = nil
+            end
+        end
+    end
+})
+local v51 = v6.Eggs:AddSection("Egg Misc")
+getgenv().Config = {
+    Webhook_enabled = false,
+    Webhook = "",
+    Ignore_AutoDeleted = true,
+    Secret_Only = true
+}
+v51:AddInput("HatchWebhook", {
+    Title = "Hatch Webhook",
+    Default = "",
+    Placeholder = "Enter your webhook URL...",
+    Callback = function(p52)
+        getgenv().Config.Webhook = p52
+        vu1:Notify({
+            Title = "Webhook Updated",
+            Content = "Webhook Set",
+            Duration = 3
+        })
+    end
+})
+v51:AddToggle("SecretHatchWebhook", {
+    Title = "Secret Hatch Webhook",
+    Default = false,
+    Callback = function(p53)
+        getgenv().Config.Webhook_enabled = p53
+        if p53 then
+            vu1:Notify({
+                Title = "Webhook Enabled",
+                Content = "Webhook alerts are now active",
+                Duration = 3
+            })
+        else
+            vu1:Notify({
+                Title = "Webhook Disabled",
+                Content = "Webhook alerts are now turned off",
+                Duration = 3
+            })
+        end
+    end
+})
+local vu54 = syn and syn.request or (http and http.request or http_request or (fluxus and fluxus.request or request))
+if vu54 then
+    local vu55 = game.Players.LocalPlayer
+    local vu56 = game:GetService("HttpService")
+    local v57 = game:GetService("RunService")
+    local vu58 = {}
+    local function vu61(p59)
+        local v60 = tostring(p59)
+        if vu58[v60] and tick() - vu58[v60] < 5 then
+            return true
+        end
+        vu58[v60] = tick()
+        return false
+    end
+    local function vu80(p62, p63, p64, p65)
+        if getgenv().Config.Webhook_enabled then
+            if getgenv().Config.Webhook ~= "" then
+                if not p65 or string.find(p65, " in ", 1, true) then
+                    local v66 = p63 and (p63:lower() or "") or ""
+                    local v67 = os.time()
+                    local v68 = "N/A"
+                    local v69 = vu55:FindFirstChild("leaderstats")
+                    if v69 then
+                        local v70 = v69:FindFirstChild("\239\191\189\239\191\189\239\191\189\239\191\189\239\191\189 Hatches")
+                        if v70 and v70:IsA("IntValue") then
+                            v68 = tostring(v70.Value)
+                        end
+                    end
+                    local v71 = ""
+                    local v72 = p62:gsub("%s+", "_"):lower()
+                    local v73 = 0
+                    local v74 = "https://img.files.cheap/u/TvQtay.webp"
+                    local v75, v76
+                    if p64 and v66:find("mythic") then
+                        v75 = "You\'ve hatched a Shiny Mythic " .. p63
+                        p62 = "Shiny Mythic " .. p62
+                        v76 = "https://content.bgsi.io/shiny_mythic_" .. v72 .. ".webp"
+                    elseif v66:find("mythic") then
+                        v75 = "You\'ve hatched a Mythic " .. p63
+                        p62 = "Mythic " .. p62
+                        v76 = "https://content.bgsi.io/mythic_" .. v72 .. ".webp"
+                    elseif p64 then
+                        v75 = "You\'ve hatched a Shiny " .. p63
+                        p62 = "Shiny " .. p62
+                        v76 = "https://content.bgsi.io/shiny_" .. v72 .. ".webp"
+                    else
+                        v75 = "You\'ve hatched a " .. p63
+                        v76 = "https://content.bgsi.io/" .. v72 .. ".webp"
+                    end
+                    local v77 = {
+                        username = "Silenced Bgsi",
+                        avatar_url = "https://img.files.cheap/u/BxwpBG.webp",
+                        content = v71,
+                        embeds = {
+                            {
+                                author = {
+                                    name = v75,
+                                    icon_url = v74
+                                },
+                                color = v73,
+                                thumbnail = {
+                                    url = v76
+                                },
+                                title = p62,
+                                description = string.format("\239\191\189\239\191\189\239\191\189\239\191\189\239\191\189  __**Chance**__: %s\n\226\143\177\239\184\143 **Hatch Date**: <t:%d:R>\n\239\191\189\239\191\189\239\191\189\239\191\189\239\191\189\239\191\189  __**Hatches**__: %s\n\226\132\185\239\184\143  __**Hatched By**__: %s", p65 or "N/A", v67, v68, vu55.Name),
+                                fields = {}
+                            }
+                        }
+                    }
+                    local v78 = vu54
+                    local v79 = {
+                        Url = getgenv().Config.Webhook,
+                        Method = "POST",
+                        Headers = {
+                            ["Content-Type"] = "application/json"
+                        },
+                        Body = vu56:JSONEncode(v77)
+                    }
+                    v78(v79)
+                end
+            else
+                return
+            end
+        else
+            return
+        end
+    end
+    local function vu103()
+        local v81 = vu55:FindFirstChild("PlayerGui")
+        if v81 then
+            v81 = vu55.PlayerGui:FindFirstChild("ScreenGui")
+        end
+        if v81 then
+            local v82 = v81:FindFirstChild("Hatching")
+            if v82 then
+                local v83, v84, v85 = ipairs(v82:GetChildren())
+                while true do
+                    local v86
+                    v85, v86 = v83(v84, v85)
+                    if v85 == nil then
+                        break
+                    end
+                    if v86:IsA("Frame") and (v86:FindFirstChild("Label") and v86:FindFirstChild("Rarity")) then
+                        local v87 = v86.Label.Text
+                        local v88 = v86.Rarity.Text
+                        local v89
+                        if v86:FindFirstChild("Shiny") then
+                            v89 = v86.Shiny.Visible or false
+                        else
+                            v89 = false
+                        end
+                        local v90
+                        if v86:FindFirstChild("Deleted") then
+                            v90 = v86.Deleted.Visible or false
+                        else
+                            v90 = false
+                        end
+                        local v91
+                        if v86:FindFirstChild("Chance") then
+                            v91 = v86.Chance.Text or nil
+                        else
+                            v91 = nil
+                        end
+                        local v92 = v88:lower()
+                        if getgenv().Config.Ignore_AutoDeleted or not v90 then
+                            if (v92:find("legendary") or v92:find("mythic")) and not (getgenv().Config.Secret_Only or vu61(v86)) then
+                                vu80(v87, v88, v89, v91)
+                            end
+                            if v92:find("secret") and not vu61(v86) then
+                                vu80(v87, "Secret", v89, v91)
+                            end
+                        end
+                    end
+                end
+            end
+            local v93 = v81:FindFirstChild("Template")
+            if v93 then
+                local v94, v95, v96 = ipairs(v93:GetDescendants())
+                while true do
+                    local v97
+                    v96, v97 = v94(v95, v96)
+                    if v96 == nil then
+                        break
+                    end
+                    if v97:IsA("TextLabel") and (v97.Name == "Rarity" and v97.Visible) and (v97.Text:lower():find("secret") and not vu61(v97)) then
+                        local v98 = v97.Parent
+                        local v99 = "Unknown"
+                        local v100 = "N/A"
+                        local v101 = false
+                        local v102 = false
+                        if v98 then
+                            if v98:FindFirstChild("Label") then
+                                v99 = v98.Label.Text
+                            end
+                            if v98:FindFirstChild("Chance") then
+                                v100 = v98.Chance.Text
+                            end
+                            if v98:FindFirstChild("Shiny") then
+                                v101 = v98.Shiny.Visible
+                            end
+                            if v98:FindFirstChild("Deleted") then
+                                v102 = v98.Deleted.Visible
+                            end
+                        end
+                        if getgenv().Config.Ignore_AutoDeleted or not v102 then
+                            vu80(v99, "Secret", v101, v100)
+                            print("[DEBUG] Secret detected:", v99, v100)
+                        end
+                    end
+                end
+            end
+        end
+    end
+    v57.Heartbeat:Connect(function()
+        if getgenv().Config.Webhook_enabled then
+            vu103()
+        end
+    end)
+    local vu104 = false
+    v51:AddToggle("FastHatchEggs", {
+        Title = "Fast Hatch Eggs",
+        Default = false,
+        Callback = function(p105)
+            vu104 = p105
+            if p105 then
+                vu1:Notify({
+                    Title = "Fast Hatch",
+                    Content = "Started fast hatching eggs",
+                    Duration = 3
+                })
+                task.spawn(function()
+                    while vu104 do
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                        task.wait(0.05)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                        task.wait(0.05)
+                    end
+                end)
+            else
+                vu1:Notify({
+                    Title = "Fast Hatch",
+                    Content = "Stopped fast hatching eggs",
+                    Duration = 3
+                })
+            end
+        end
+    })
+    local v106 = game:GetService("ReplicatedStorage")
+    local vu107 = game:GetService("Workspace")
+    local vu108 = v106.Shared.Framework.Network.Remote.RemoteEvent
+    local vu109 = v106.Remotes.Pickups:WaitForChild("CollectPickup")
+    local vu110 = false
+    local vu111 = false
+    local vu112 = false
+    local vu113 = 5
+    local v114 = v6.AutoFarm:AddSection("Main Farm")
+    v114:AddToggle("AutoBubble", {
+        Title = "Auto Bubble",
+        Default = false,
+        Callback = function(p115)
+            vu110 = p115
+            vu1:Notify({
+                Title = "Auto Bubble",
+                Content = p115 and "Started" or "Stopped Blowing Bubbles",
+                Duration = 3
+            })
+            if p115 then
+                task.spawn(function()
+                    while vu110 do
+                        pcall(function()
+                            vu108:FireServer("BlowBubble")
+                        end)
+                        task.wait(0.1)
+                    end
+                end)
+            end
+        end
+    })
+    v114:AddSlider("SellCooldown", {
+        Title = "Sell Cooldown (Seconds)",
+        Min = 5,
+        Max = 100,
+        Default = 5,
+        Rounding = 1,
+        Color = Color3.fromRGB(0, 0, 255),
+        Callback = function(p116)
+            vu113 = p116 or 5
+        end
+    })
+    task.spawn(function()
+        while true do
+            while vu111 do
+                pcall(function()
+                    vu108:FireServer("SellBubble")
+                end)
+                task.wait(vu113)
+            end
+            task.wait(0.1)
+        end
+    end)
+    v114:AddToggle("AutoSellToggleID", {
+        Title = "Auto Sell",
+        Default = false,
+        Callback = function(p117)
+            vu111 = p117
+            vu1:Notify({
+                Title = "Auto Sell",
+                Content = p117 and "Enabled" or "Disabled",
+                Duration = 3
+            })
+        end
+    })
+    local function vu124()
+        local v118 = vu107:FindFirstChild("Rendered")
+        if not v118 then
+            return nil
+        end
+        local v119, v120, v121 = ipairs(v118:GetChildren())
+        while true do
+            local v122
+            v121, v122 = v119(v120, v121)
+            if v121 == nil then
+                break
+            end
+            if v122:IsA("Folder") and # v122:GetChildren() > 0 then
+                local v123 = v122:GetChildren()[1]
+                if v123 and (v123:IsA("Model") or v123:IsA("Part")) and # v123.Name >= 30 then
+                    return v122
+                end
+            end
+        end
+        return nil
+    end
+    v114:AddToggle("AutoCollect", {
+        Title = "Auto Collect Coins & Gems",
+        Default = false,
+        Callback = function(p125)
+            vu112 = p125
+            vu1:Notify({
+                Title = "Auto Collect",
+                Content = p125 and "Started" or "Stopped Collecting Coins & Gems",
+                Duration = 3
+            })
+            if p125 then
+                task.spawn(function()
+                    while vu112 do
+                        pcall(function()
+                            local v126 = vu124()
+                            if v126 then
+                                local v127, v128, v129 = ipairs(v126:GetChildren())
+                                while true do
+                                    local v130
+                                    v129, v130 = v127(v128, v129)
+                                    if v129 == nil then
+                                        break
+                                    end
+                                    if v130:IsA("Model") or v130:IsA("Part") then
+                                        vu109:FireServer(v130.Name)
+                                        v130:Destroy()
+                                    end
+                                end
+                            end
+                        end)
+                        task.wait(0.3)
+                    end
+                end)
+            end
+        end
+    })
+    local v131 = game:GetService("ReplicatedStorage")
+    local vu132 = v131.Shared.Framework.Network.Remote.RemoteFunction
+    local vu133 = v131.Shared.Framework.Network.Remote.RemoteEvent
+    local v134 = v6.AutoFarm:AddSection("Auto Claim")
+    local vu135 = false
+    v134:AddToggle("AutoClaimPlaytimeToggle", {
+        Title = "Auto Claim Playtime",
+        Default = false,
+        Callback = function(p136)
+            vu135 = p136
+            if p136 then
+                vu1:Notify({
+                    Title = "Auto Claim",
+                    Content = "Started claiming playtime rewards",
+                    Duration = 3
+                })
+                task.spawn(function()
+                    while true do
+                        if not vu135 then
+                            return
+                        end
+                        for v137 = 1, 9 do
+                            local vu138 = v137
+                            if not vu135 then
+                                break
+                            end
+                            pcall(function()
+                                vu132:InvokeServer("ClaimPlaytime", vu138)
+                                print("Claimed playtime reward:", vu138)
+                            end)
+                            task.wait(1)
+                        end
+                        task.wait(10)
+                    end
+                end)
+            else
+                vu1:Notify({
+                    Title = "Auto Claim",
+                    Content = "Stopped claiming playtime rewards",
+                    Duration = 3
+                })
+            end
+        end
+    })
+    local vu139 = false
+    v134:AddToggle("AutoClaimSeasonToggle", {
+        Title = "Auto Claim Season Pass",
+        Default = false,
+        Callback = function(p140)
+            vu139 = p140
+            vu1:Notify({
+                Title = "Auto Claim Season Pass",
+                Content = p140 and "Started claiming" or "Stopped claiming",
+                Duration = 3
+            })
+            if p140 then
+                task.spawn(function()
+                    while vu139 do
+                        pcall(function()
+                            vu133:FireServer("ClaimSeason")
+                        end)
+                        task.wait(0.01)
+                    end
+                end)
+            end
+        end
+    })
+    local v141 = v6.AutoFarm:AddSection("Auto Tickets")
+    local vu142 = false
+    v141:AddToggle("AutoSpinTicketsToggle", {
+        Title = "Auto Use Spin Tickets",
+        Default = false,
+        Callback = function(p143)
+            vu142 = p143
+            vu1:Notify({
+                Title = "Auto Spin Tickets",
+                Content = p143 and "Started" or "Stopped",
+                Duration = 3
+            })
+            if p143 then
+                task.spawn(function()
+                    while vu142 do
+                        pcall(function()
+                            vu132:InvokeServer("WheelSpin")
+                            task.wait(0.01)
+                            vu133:FireServer("ClaimWheelSpinQueue")
+                        end)
+                        task.wait(0.01)
+                    end
+                end)
+            end
+        end
+    })
+    local vu144 = false
+    v141:AddToggle("AutoFestivalTicketsToggle", {
+        Title = "Auto Use Festival Tickets",
+        Default = false,
+        Callback = function(p145)
+            vu144 = p145
+            vu1:Notify({
+                Title = "Auto Festival Tickets",
+                Content = p145 and "Started" or "Stopped",
+                Duration = 3
+            })
+            if p145 then
+                task.spawn(function()
+                    while vu144 do
+                        pcall(function()
+                            vu132:InvokeServer("FestivalWheelSpin")
+                            task.wait(0.01)
+                            vu133:FireServer("ClaimFestivalWheelSpinQueue")
+                        end)
+                        task.wait(0.01)
+                    end
+                end)
+            end
+        end
+    })
+    local v146 = v6.AutoFarm:AddSection("Auto Mystery Box")
+    local vu147 = v131.Shared.Framework.Network.Remote.RemoteEvent
+    local vu148 = 50
+    local vu149 = false
+    local function vu151(pu150)
+        pcall(function()
+            vu147:FireServer("UseGift", "Mystery Box", pu150)
+        end)
+    end
+    local function vu163()
+        local vu152 = vu107:FindFirstChild("Rendered")
+        if vu152 then
+            vu152 = vu107.Rendered:FindFirstChild("Gifts")
+        end
+        if vu152 then
+            local v153, v154, v155 = ipairs(vu152:GetChildren())
+            local v156 = {}
+            while true do
+                local v157
+                v155, v157 = v153(v154, v155)
+                if v155 == nil then
+                    break
+                end
+                table.insert(v156, v157.Name)
+            end
+            local v158, v159, v160 = ipairs(v156)
+            while true do
+                local vu161
+                v160, vu161 = v158(v159, v160)
+                if v160 == nil then
+                    break
+                end
+                pcall(function()
+                    vu147:FireServer("ClaimGift", vu161)
+                    local v162 = vu152:FindFirstChild(vu161)
+                    if v162 then
+                        v162:Destroy()
+                    end
+                end)
+            end
+        end
+    end
+    local function vu164()
+        while vu149 do
+            vu151(vu148)
+            task.wait(0.5)
+            vu163()
+            task.wait(3)
+        end
+    end
+    v146:AddToggle("AutoOpenMysteryBoxToggle", {
+        Title = "Auto Open Mystery Boxes",
+        Default = false,
+        Callback = function(p165)
+            vu149 = p165
+            if p165 then
+                task.spawn(vu164)
+                vu1:Notify({
+                    Title = "Mystery Box",
+                    Content = "Started auto-opening mystery boxes",
+                    Duration = 3
+                })
+            else
+                vu1:Notify({
+                    Title = "Mystery Box",
+                    Content = "Stopped auto-opening mystery boxes",
+                    Duration = 3
+                })
+            end
+        end
+    })
+    local v166 = v6.Minigames:AddSection("Dice Roll")
+    local vu167 = v6.Minigames:AddSection("Minigames")
+    local vu168 = "Dice"
+    v166:AddDropdown("DiceRollDropdown", {
+        Title = "Select Dice",
+        Default = "Dice",
+        Values = {
+            "Dice",
+            "Giant Dice",
+            "Golden Dice"
+        },
+        Callback = function(p169)
+            vu168 = p169
+        end
+    })
+    AutoRollDiceToggle = v166:AddToggle("AutoRollDiceToggle", {
+        Title = "Auto Roll Dice",
+        Default = false,
+        Callback = function(p170)
+            if p170 then
+                task.spawn(function()
+                    while AutoRollDiceToggle.Value do
+                        local _, _ = pcall(function()
+                            game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Framework"):WaitForChild("Network"):WaitForChild("Remote"):WaitForChild("RemoteFunction"):InvokeServer("RollDice", vu168)
+                            game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Framework"):WaitForChild("Network"):WaitForChild("Remote"):WaitForChild("RemoteEvent"):FireServer("ClaimTile")
+                        end)
+                        task.wait(0.1)
+                    end
+                end)
+            end
+        end
+    })
+    local vu171 = "Easy"
+    local v172 = vu167
+    local v174 = {
+        Title = "Select Difficulty (For Minigames)",
+        Default = "Easy",
+        Values = {
+            "Easy",
+            "Medium",
+            "Hard",
+            "Insane"
+        },
+        Callback = function(p173)
+            vu171 = p173
+        end
+    }
+    vu167.AddDropdown(v172, "DifficultySelectDropdown", v174)
+    local function v182(p175, pu176, pu177)
+        local vu178 = nil
+        local v181 = vu167:AddToggle(p175 .. "Toggle", {
+            Title = "Auto " .. p175,
+            Default = false,
+            Callback = function(p179)
+                if p179 then
+                    task.spawn(function()
+                        while vu178.Value do
+                            pcall(function()
+                                local v180 = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Framework"):WaitForChild("Network"):WaitForChild("Remote"):WaitForChild("RemoteEvent")
+                                v180:FireServer("SkipMinigameCooldown", pu176)
+                                task.wait(pu177[1])
+                                v180:FireServer("StartMinigame", pu176, vu171)
+                                task.wait(pu177[2])
+                                v180:FireServer("FinishMinigame")
+                                task.wait(pu177[3])
+                            end)
+                            task.wait(0.1)
+                        end
+                    end)
+                end
+            end
+        })
+        return v181
+    end
+    v182("HyperDarts", "Hyper Darts", {
+        2.5,
+        30,
+        2.5
+    })
+    v182("RobotClaw", "Robot Claw", {
+        0.5,
+        3,
+        2.5
+    })
+    v182("CartEscape", "Cart Escape", {
+        3,
+        22,
+        2.5
+    })
+    v182("PetMatch", "Pet Match", {
+        0.5,
+        0.5,
+        0.1
+    })
+    local v183 = v6.Buy:AddSection("Shops")
+    local vu184 = {
+        "BlueBerry",
+        "Cherry",
+        "Pizza",
+        "Watermelon",
+        "Chocolate",
+        "Contrast",
+        "Gold",
+        "Lemon",
+        "Donut",
+        "Swirl",
+        "Molten",
+        "Abstract",
+        "Classic"
+    }
+    local vu185 = {
+        "Stretchy Gum",
+        "Chewy Gum",
+        "Epic Gum",
+        "Ultra Gum",
+        "Omega Gum",
+        "Unreal Gum",
+        "Cosmic Gum",
+        "XL Gum",
+        "Mega Gum",
+        "Quantum Gum",
+        "Alien Gum",
+        "Radioactive Gum",
+        "Experiment #52",
+        "Void Gum",
+        "RoboGum",
+        "Retro Gum"
+    }
+    local vu186 = {
+        "Buffs",
+        "Pets",
+        "Shops",
+        "Rifts"
+    }
+    local vu187 = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
+    local vu188 = nil
+    vu188 = v183:AddToggle("autobuygum", {
+        Title = "Auto Buy Flavours",
+        Default = false,
+        Callback = function(p189)
+            if p189 then
+                task.spawn(function()
+                    while vu188.Value do
+                        local v190, v191, v192 = ipairs(vu184)
+                        while true do
+                            local vu193
+                            v192, vu193 = v190(v191, v192)
+                            if v192 == nil or not vu188.Value then
+                                break
+                            end
+                            pcall(function()
+                                vu187:FireServer("GumShopPurchase", vu193)
+                            end)
+                            task.wait(2)
+                        end
+                        task.wait(5)
+                    end
+                end)
+            end
+        end
+    })
+    local vu194 = nil
+    vu194 = v183:AddToggle("autobuystorage", {
+        Title = "Auto Buy Storage",
+        Default = false,
+        Callback = function(p195)
+            if p195 then
+                task.spawn(function()
+                    while vu194.Value do
+                        local v196, v197, v198 = ipairs(vu185)
+                        while true do
+                            local vu199
+                            v198, vu199 = v196(v197, v198)
+                            if v198 == nil or not vu194.Value then
+                                break
+                            end
+                            pcall(function()
+                                vu187:FireServer("GumShopPurchase", vu199)
+                            end)
+                            task.wait(2)
+                        end
+                        task.wait(5)
+                    end
+                end)
+            end
+        end
+    })
+    local vu200 = nil
+    vu200 = v183:AddToggle("autoupgrademastery", {
+        Title = "Auto Upgrade Mastery",
+        Default = false,
+        Callback = function(p201)
+            if p201 then
+                task.spawn(function()
+                    while vu200.Value do
+                        local v202, v203, v204 = ipairs(vu186)
+                        while true do
+                            local vu205
+                            v204, vu205 = v202(v203, v204)
+                            if v204 == nil or not vu200.Value then
+                                break
+                            end
+                            pcall(function()
+                                vu187:FireServer("UpgradeMastery", vu205)
+                            end)
+                            task.wait(1)
+                        end
+                        task.wait(10)
+                    end
+                end)
+            end
+        end
+    })
+    local vu206 = nil
+    vu206 = v183:AddToggle("autobuyblackmarket", {
+        Title = "Auto Buy Blackmarket Shop",
+        Default = false,
+        Callback = function(p207)
+            if p207 then
+                task.spawn(function()
+                    local v208 = 1
+                    while vu206.Value do
+                        vu187:FireServer("BuyShopItem", "shard-shop", v208, true)
+                        v208 = v208 % 3 + 1
+                        task.wait(1)
+                    end
+                end)
+            end
+        end
+    })
+    local vu209 = nil
+    vu209 = v183:AddToggle("autobuyalien", {
+        Title = "Auto Buy Alien Shop",
+        Default = false,
+        Callback = function(p210)
+            if p210 then
+                task.spawn(function()
+                    local v211 = 1
+                    while vu209.Value do
+                        vu187:FireServer("BuyShopItem", "alien-shop", v211, true)
+                        v211 = v211 % 3 + 1
+                        task.wait(1)
+                    end
+                end)
+            end
+        end
+    })
+    local vu212 = nil
+    vu212 = v183:AddToggle("autobuyfestival", {
+        Title = "Auto Buy Festival Shop",
+        Default = false,
+        Callback = function(p213)
+            if p213 then
+                task.spawn(function()
+                    local v214 = 1
+                    while vu212.Value do
+                        vu187:FireServer("BuyShopItem", "festival-shop", v214, true)
+                        v214 = v214 % 3 + 1
+                        task.wait(1)
+                    end
+                end)
+            end
+        end
+    })
+    local vu215 = nil
+    vu215 = v183:AddToggle("autobuydice", {
+        Title = "Auto Buy Dice Shop",
+        Default = false,
+        Callback = function(p216)
+            local vu217 = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
+            if p216 then
+                task.spawn(function()
+                    local vu218 = 1
+                    while vu215.Value do
+                        pcall(function()
+                            vu217:FireServer("BuyShopItem", "dice-shop", vu218, true)
+                        end)
+                        local v219 = vu218 % 3 + 1
+                        task.wait(1)
+                        vu218 = v219
+                    end
+                end)
+            end
+        end
+    })
+    local v220 = v6.Teleport:AddSection("World 1")
+    local v221 = {
+        Spawn = CFrame.new(58, 22, - 71),
+        ["Floating Island"] = CFrame.new(- 16, 423, 143),
+        ["Outer Space"] = CFrame.new(41, 2663, - 7),
+        Twilight = CFrame.new(- 78, 6862, 88),
+        ["The Void"] = CFrame.new(16, 10146, 151),
+        Zen = CFrame.new(36, 15971, 41)
+    }
+    local v222, v223, v224 = ipairs({
+        "Spawn",
+        "Floating Island",
+        "Outer Space",
+        "Twilight",
+        "The Void",
+        "Zen"
+    })
+    local v225 = vu1
+    while true do
+        local v226
+        v224, v226 = v222(v223, v224)
+        if v224 == nil then
+            break
+        end
+        local vu227 = v221[v226]
+        v220:AddButton({
+            Title = "Teleport To " .. v226,
+            Callback = function()
+                local v228 = game.Players.LocalPlayer;
+                (v228.Character or v228.CharacterAdded:Wait()):WaitForChild("HumanoidRootPart").CFrame = vu227
+            end
+        })
+    end
+    v2:SetLibrary(v225)
+    v3:SetLibrary(v225)
+    v2:IgnoreThemeSettings()
+    v2:SetIgnoreIndexes({})
+    v3:SetFolder("FluentScriptHub")
+    v2:SetFolder("FluentScriptHub/specific-game")
+    v3:BuildInterfaceSection(v6.Settings)
+    v2:BuildConfigSection(v6.Settings)
+    v5:SelectTab(1)
+    v225:Notify({
+        Title = "Bgsi Script Loaded",
+        Content = "",
+        Duration = 5
+    })
+    v2:LoadAutoloadConfig()
+else
+    warn("[WARN] HTTP Support not found.")
+end
