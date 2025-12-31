@@ -272,7 +272,6 @@ local vu34 = {
     ["Cyber Egg"] = CFrame.new(- 94, 9, - 63),
     ["Neon Egg"] = CFrame.new(- 83, 10, - 58),
     ["Infinity Egg"] = CFrame.new(- 99, 8, - 27),
-    ["OG Egg"] = CFrame.new(69, 8, 27),
     ["New Years Egg"] = CFrame.new(83, 9, -13),
     
 }
@@ -297,7 +296,6 @@ v35:AddDropdown("EggDropdown", {
         "Cyber Egg",
         "Neon Egg",
         "Infinity Egg",
-        "OG Egg",
         "New Years Egg"    
     },
     Multi = false,
