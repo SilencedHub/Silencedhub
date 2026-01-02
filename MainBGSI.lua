@@ -1,4 +1,4 @@
--- [[ SILENCED BGSI - MACLIB ]] --
+-- [[ SILENCED BGSI - MACLIB FIXED ]] --
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 local VIM = game:GetService("VirtualInputManager")
 
@@ -13,18 +13,27 @@ local Window = MacLib:Window({
     DragStyle = 1
 })
 
--- FORCED WAIT: Maclib needs time to register the window in CoreGui
-task.wait(1) 
+-- FIXED: Maclib sometimes fails if tabs are added the same frame as window creation
+task.wait(0.5)
 
--- [[ TAB CREATION ]] --
--- We define these first to ensure the 'Tab' objects exist
-local MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
-local HunterTab = Window:Tab({ Name = "Hunter", Image = "rbxassetid://10709819149" })
-local EggTab = Window:Tab({ Name = "Eggs & Worlds", Image = "rbxassetid://10709761066" })
+-- [[ TABS ]] --
+-- Using the exact method from documentation: Window:Tab()
+local MainTab = Window:Tab({ 
+    Name = "Main", 
+    Image = "rbxassetid://10734950309" 
+})
 
-task.wait(0.3) -- Small gap to allow tabs to register
+local HunterTab = Window:Tab({ 
+    Name = "Hunter", 
+    Image = "rbxassetid://10709819149" 
+})
 
--- [[ MAIN TAB CONTENT ]] --
+local EggTab = Window:Tab({ 
+    Name = "Eggs & Worlds", 
+    Image = "rbxassetid://10709761066" 
+})
+
+-- [[ MAIN TAB ]] --
 local MainGroup = MainTab:Groupbox({ Name = "Automation", Side = "Left" })
 
 MainGroup:Toggle({
@@ -44,21 +53,21 @@ MainGroup:Button({
     end
 })
 
--- [[ HUNTER TAB CONTENT ]] --
-local PingGroup = HunterTab:Groupbox({ Name = "Webhook Settings", Side = "Left" })
+-- [[ HUNTER TAB ]] --
+local HunterGroup = HunterTab:Groupbox({ Name = "Webhook Pings", Side = "Left" })
 
-PingGroup:Toggle({ Name = "Ping for Secret", Default = true, Callback = function(v) getgenv().PingSecret = v end })
-PingGroup:Toggle({ Name = "Ping for Mythic", Default = false, Callback = function(v) getgenv().PingMythic = v end })
-PingGroup:Toggle({ Name = "Ping for Shiny", Default = false, Callback = function(v) getgenv().PingShiny = v end })
+HunterGroup:Toggle({ Name = "Ping for Secret", Default = true, Callback = function(v) getgenv().PingSecret = v end })
+HunterGroup:Toggle({ Name = "Ping for Mythic", Default = false, Callback = function(v) getgenv().PingMythic = v end })
 
--- [[ EGG & TELEPORT TAB CONTENT ]] --
+-- [[ EGG & TELEPORT TAB ]] --
 local TeleportGroup = EggTab:Groupbox({ Name = "Teleports", Side = "Left" })
+local SelectedTP = "Common Egg"
 
 TeleportGroup:Dropdown({
     Name = "Select Location",
     Items = {"Common Egg", "Void Egg", "Hell Egg", "Overworld", "Toy World"},
     Default = "Common Egg",
-    Callback = function(v) getgenv().SelectedTP = v end
+    Callback = function(v) SelectedTP = v end
 })
 
 TeleportGroup:Button({
@@ -72,15 +81,15 @@ TeleportGroup:Button({
             ["Toy World"] = CFrame.new(623, 15, 11)
         }
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp and coords[getgenv().SelectedTP] then
-            hrp.CFrame = coords[getgenv().SelectedTP]
+        if hrp and coords[SelectedTP] then
+            hrp.CFrame = coords[SelectedTP]
         end
     end
 })
 
-local HatchGroup = EggTab:Groupbox({ Name = "Hatch Tools", Side = "Right" })
+local EggTools = EggTab:Groupbox({ Name = "Hatch Tools", Side = "Right" })
 
-HatchGroup:Toggle({
+EggTools:Toggle({
     Name = "Auto Spam E",
     Default = false,
     Callback = function(Value)
@@ -96,6 +105,5 @@ HatchGroup:Toggle({
     end
 })
 
--- Final Check
+-- CONFIG FOLDER (REQUIRED BY MACLIB)
 MacLib:SetFolder("SilencedBGSI")
-print("UI Successfully Built")
