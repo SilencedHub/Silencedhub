@@ -1,5 +1,5 @@
 -- [[ SILENCED BGSI MASTER SCRIPT - RAYFIELD EDITION ]] --
--- Master Version: Added Event Tab Placeholder
+-- Master Version: Added Christmas Event Features
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
@@ -22,6 +22,7 @@ getgenv().Config = { Webhook_enabled = false, Webhook = "", Secret_Only = true }
 local AutoBubble, AutoSell, AutoCollect = false, false, false
 local AutoSpamE = false
 local AutoBuyGum, AutoBuyUpgrades = false, false
+local AutoOpenPresents, AutoFestiveSpin = false, false -- Event States
 local SellCooldown = 5
 local SelectedEgg = "Common Egg"
 
@@ -35,9 +36,49 @@ local EggPoints = {["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFr
 local MainTab = Window:CreateTab("Main", 4483362458)
 local FarmTab = Window:CreateTab("Auto Farm", 4483362458)
 local EggTab = Window:CreateTab("Eggs", 4483362458)
-local EventTab = Window:CreateTab("Event", 4483362458) -- New Empty Tab
+local EventTab = Window:CreateTab("Event", 4483362458) -- Event Tab is now active
 local TeleportTab = Window:CreateTab("Teleports", 4483362458)
 local WebhookTab = Window:CreateTab("Webhook", 4483362458)
+
+-------------------------------------------------------------------------------
+-- EVENT TAB (Christmas Features)
+-------------------------------------------------------------------------------
+EventTab:CreateSection("Christmas Event 2025/2026")
+
+EventTab:CreateToggle({
+    Name = "Auto Open Presents",
+    CurrentValue = false,
+    Flag = "AutoPresents",
+    Callback = function(Value)
+        AutoOpenPresents = Value
+        task.spawn(function()
+            local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
+            while AutoOpenPresents do
+                -- Claims various gift tiers based on the game's remote logic
+                pcall(function() RF:InvokeServer("ClaimGift", 1) end)
+                pcall(function() RF:InvokeServer("ClaimGift", 2) end)
+                pcall(function() RF:InvokeServer("ClaimGift", 3) end)
+                task.wait(5)
+            end
+        end)
+    end,
+})
+
+EventTab:CreateToggle({
+    Name = "Auto Festive Wheel Spin",
+    CurrentValue = false,
+    Flag = "AutoFestiveSpin",
+    Callback = function(Value)
+        AutoFestiveSpin = Value
+        task.spawn(function()
+            local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
+            while AutoFestiveSpin do
+                pcall(function() RF:InvokeServer("SpinFestiveWheel") end)
+                task.wait(5)
+            end
+        end)
+    end,
+})
 
 -------------------------------------------------------------------------------
 -- MAIN TAB
@@ -181,12 +222,6 @@ EggTab:CreateButton({
         if hrp and EggPoints[SelectedEgg] then hrp.CFrame = EggPoints[SelectedEgg] + Vector3.new(0, 3, 0) end
     end,
 })
-
--------------------------------------------------------------------------------
--- EVENT TAB (Placeholder)
--------------------------------------------------------------------------------
-EventTab:CreateSection("Event Features")
-EventTab:CreateParagraph({Title = "Work in Progress", Content = "Think about what features you want here. Once you decide, let me know!"})
 
 -------------------------------------------------------------------------------
 -- TELEPORTS TAB
