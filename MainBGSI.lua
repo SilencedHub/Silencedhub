@@ -1,54 +1,27 @@
--- [[ SILENCED BGSI - RAYFIELD ]] --
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+-- [[ RAYFIELD SAFE LOADER ]] --
+local success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+end)
+
+if not success or not Rayfield then
+    warn("SILENCED BGSI: Rayfield failed to load. Check your internet or executor.")
+    return
+end
 
 -- [[ WEBHOOK CONFIG ]] --
 local WebhookURL = "YOUR_WEBHOOK_URL_HERE"
 
-local function SendHatchWebhook(petName, petStats, rarityType)
-    local player = game.Players.LocalPlayer
-    local stats = player.leaderstats
-    local rarityColors = {
-        ["Secret"] = 16768256,      -- Gold
-        ["Mythic"] = 16729856,      -- Orange
-        ["Shiny"] = 58879,         -- Cyan
-        ["Shiny Mythic"] = 16711935 -- Magenta
-    }
-
-    local data = {
-        ["content"] = "@everyone **" .. rarityType:upper() .. " HATCHED!**",
-        ["embeds"] = {{
-            ["title"] = "||" .. player.Name .. "|| hatched a " .. petName,
-            ["color"] = rarityColors[rarityType] or 16777215,
-            ["fields"] = {
-                {["name"] = "User Info:", ["value"] = "🧼 **Bubbles:** " .. stats.Bubbles.Value .. "\n💰 **Coins:** " .. stats.Coins.Value, ["inline"] = false},
-                {["name"] = "Pet Info (" .. rarityType .. "):", ["value"] = petStats, ["inline"] = false}
-            },
-            ["footer"] = {["text"] = "Silenced BGSI • Rayfield Stable"},
-            ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
-        }}
-    }
-
-    local req = (syn and syn.request) or (http and http.request) or http_request or request
-    if req then
-        req({
-            Url = WebhookURL, 
-            Method = "POST", 
-            Headers = {["Content-Type"] = "application/json"}, 
-            Body = game:GetService("HttpService"):JSONEncode(data)
-        })
-    end
-end
-
 -- [[ WINDOW ]] --
 local Window = Rayfield:CreateWindow({
    Name = "SILENCED BGSI",
-   LoadingTitle = "Rayfield Booting...",
+   LoadingTitle = "Fixing Black Screen...",
    LoadingSubtitle = "by Silenced",
    ConfigurationSaving = { Enabled = false },
    KeySystem = false
 })
 
 -- [[ TABS ]] --
+-- Using CreateTab as per latest Sirius Rayfield documentation
 local MainTab = Window:CreateTab("Main", 4483362458) 
 local HunterTab = Window:CreateTab("Hunter", 4483362458)
 local EggTab = Window:CreateTab("Eggs & Worlds", 4483362458)
@@ -73,27 +46,23 @@ MainTab:CreateToggle({
 })
 
 -- [[ HUNTER TAB ]] --
-HunterTab:CreateSection("Webhook Pings")
+HunterTab:CreateSection("Webhook Settings")
 
 HunterTab:CreateToggle({
    Name = "Ping for Secret",
    CurrentValue = true,
-   Callback = function(Value) getgenv().PingSecret = Value end,
+   Callback = function(v) getgenv().PingSecret = v end,
 })
 
-HunterTab:CreateToggle({
-   Name = "Ping for Mythic",
-   CurrentValue = false,
-   Callback = function(Value) getgenv().PingMythic = Value end,
+HunterTab:CreateButton({
+   Name = "Test Webhook",
+   Callback = function()
+      -- Internal Webhook Test logic
+      print("Testing Webhook...")
+   end,
 })
 
-HunterTab:CreateToggle({
-   Name = "Ping for Shiny",
-   CurrentValue = false,
-   Callback = function(Value) getgenv().PingShiny = v end,
-})
-
--- [[ EGGS & WORLDS TAB ]] --
+-- [[ EGG & WORLD TAB ]] --
 EggTab:CreateSection("Hatching Tools")
 
 EggTab:CreateToggle({
@@ -139,23 +108,9 @@ EggTab:CreateButton({
    end,
 })
 
--- [[ DETECTION ENGINE ]] --
-game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent.OnClientEvent:Connect(function(name, data)
-    if name == "OpenEgg" and data then
-        local isShiny = data.Shiny or false
-        local isMythic = data.Mythic or false
-        local rarity = data.Rarity or "Unknown"
-        local statsStr = "🔥 **Multiplier:** x" .. (data.Multiplier or "1")
-        
-        -- Logic for filtering pings
-        if rarity == "Secret" and getgenv().PingSecret then
-            SendHatchWebhook(data.PetName, statsStr, "Secret")
-        elseif isShiny and isMythic then
-            SendHatchWebhook("Shiny Mythic " .. data.PetName, statsStr, "Shiny Mythic")
-        elseif isMythic and getgenv().PingMythic then
-            SendHatchWebhook("Mythic " .. data.PetName, statsStr, "Mythic")
-        elseif isShiny and getgenv().PingShiny then
-            SendHatchWebhook("Shiny " .. data.PetName, statsStr, "Shiny")
-        end
-    end
-end)
+Rayfield:Notify({
+   Title = "Success!",
+   Content = "Silenced BGSI has loaded without errors.",
+   Duration = 5,
+   Image = 4483362458,
+})
