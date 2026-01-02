@@ -1,6 +1,7 @@
+
 local Library = nil
 
--- POTASSIUM PROOF LOADER
+
 local function LoadUI()
     local success, result = pcall(function()
         return loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/vozoid/source.lua"))()
@@ -8,7 +9,7 @@ local function LoadUI()
     if success then Library = result end
 end
 
--- Retry loop to prevent "nil" index errors
+
 local retries = 0
 repeat
     LoadUI()
@@ -26,7 +27,7 @@ if not Library then
     })
 end
 
--- WINDOW CREATION
+
 local Window = Library:Load{
     Name = "SILENCED BGSI",
     SizeX = 500,
@@ -34,18 +35,18 @@ local Window = Library:Load{
     Theme = "Midnight",
 }
 
--- DATA
+
 local EggData = {
     ["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8),
     ["Void Egg"] = CFrame.new(-146, 9, -26), ["Hell Egg"] = CFrame.new(-145, 9, -36)
 }
 
--- TABS
+
 local MainTab = Window:Tab("Main")
 local FarmTab = Window:Tab("Auto Farm")
 local EggTab = Window:Tab("Teleports")
 
--- MAIN TAB
+
 local Rewards = MainTab:Section{ Name = "Rewards", Side = "Left" }
 Rewards:Button{
     Name = "Redeem All Codes",
@@ -58,7 +59,7 @@ Rewards:Button{
     end
 }
 
--- AUTO FARM
+
 local Farm = FarmTab:Section{ Name = "Farming", Side = "Left" }
 local SellWait = 5
 
@@ -94,7 +95,7 @@ Farm:Toggle({
     end
 })
 
--- EGGS
+
 local EggSec = EggTab:Section{ Name = "Egg TP", Side = "Left" }
 local SelectedEgg = "Common Egg"
 
@@ -112,5 +113,5 @@ EggSec:Button({
     end
 })
 
--- Discord Copy
+
 setclipboard("https://discord.gg/YOUR_INVITE")
