@@ -1,53 +1,41 @@
--- [[ SILENCED BGSI - MACLIB STABLE ]] --
+-- [[ SILENCED BGSI - MacLib STABLE ]] --
 
-local Maclib = nil
-local LibURL = "https://raw.githubusercontent.com/x2Swiftz/UI-Library/refs/heads/main/Libraries/Maclib%20-%20Library.lua"
+local MacLib = nil
+local success, err = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
+end)
 
--- POWERFUL LOADER: Prevents the "nil" error from your screenshot
-for i = 1, 15 do
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet(LibURL))()
+-- Retry loop for Potassium stability
+local retries = 0
+while (not success or not MacLib) and retries < 15 do
+    task.wait(0.5)
+    retries = retries + 1
+    success, MacLib = pcall(function()
+        return loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
     end)
-    if success and type(result) == "table" then
-        Maclib = result
-        break
-    end
-    task.wait(1) -- Wait 1 second between retries
 end
 
-if not Maclib then
-    return game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Loading Error",
-        Text = "Executor failed to fetch the UI. Please restart and try again.",
-        Duration = 10
-    })
-end
+if not MacLib then return warn("Maclib failed to load.") end
 
 -- [[ WEBHOOK CONFIG ]] --
 local WebhookURL = "YOUR_WEBHOOK_URL_HERE"
 
-local function SendHatchWebhook(petName, petStats, isTest)
+local function SendHatchWebhook(petName, petStats, rarityType)
     local player = game.Players.LocalPlayer
     local stats = player.leaderstats
-    
+    local rarityColors = {
+        ["Secret"] = 0xFFD700, ["Mythic"] = 0xFF4500, 
+        ["Shiny"] = 0x00E5FF, ["Shiny Mythic"] = 0xFF00FF
+    }
+
     local data = {
-        ["content"] = isTest and "Webhook Test" or "@everyone **SECRET HATCHED!**",
+        ["content"] = "@everyone **" .. rarityType:upper() .. " HATCHED!**",
         ["embeds"] = {{
             ["title"] = "||" .. player.Name .. "|| hatched a " .. petName,
-            ["color"] = isTest and 0x3498db or 0xFFD700,
+            ["color"] = rarityColors[rarityType] or 0xFFFFFF,
             ["fields"] = {
-                {
-                    ["name"] = "User Info:",
-                    ["value"] = "🧼 **Current Bubbles:** " .. stats.Bubbles.Value .. 
-                               "\n💰 **Coins:** " .. stats.Coins.Value .. 
-                               "\n💎 **Gems:** " .. stats.Gems.Value,
-                    ["inline"] = false
-                },
-                {
-                    ["name"] = "Pet Info:",
-                    ["value"] = petStats,
-                    ["inline"] = false
-                }
+                {["name"] = "User Info:", ["value"] = "🧼 **Bubbles:** " .. stats.Bubbles.Value .. "\n💰 **Coins:** " .. stats.Coins.Value .. "\n💎 **Gems:** " .. stats.Gems.Value, ["inline"] = false},
+                {["name"] = "Pet Info (" .. rarityType .. "):", ["value"] = petStats, ["inline"] = false}
             },
             ["footer"] = {["text"] = "Silenced BGSI • by discord.gg/eaAKTc64s"},
             ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
@@ -56,47 +44,26 @@ local function SendHatchWebhook(petName, petStats, isTest)
 
     local req = (syn and syn.request) or (http and http.request) or http_request or request
     if req then
-        req({
-            Url = WebhookURL,
-            Method = "POST",
-            Headers = {["Content-Type"] = "application/json"},
-            Body = game:GetService("HttpService"):JSONEncode(data)
-        })
+        req({Url = WebhookURL, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = game:GetService("HttpService"):JSONEncode(data)})
     end
 end
 
--- [[ WINDOW ]] --
-local Window = Maclib:Window({
+-- [[ WINDOW CREATION ]] --
+local Window = MacLib:Window({
     Title = "SILENCED BGSI",
     Subtitle = "Bubble Gum Simulator",
-    Size = UDim2.fromOffset(550, 350),
+    Size = UDim2.fromOffset(550, 420),
     DragStyle = 1
 })
 
 -- [[ TABS ]] --
-local Tabs = {
-    Main = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" }),
-    Farm = Window:Tab({ Name = "Auto Farm", Image = "rbxassetid://10709819149" })
-}
+local MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
+local HunterTab = Window:Tab({ Name = "Webhook Hunter", Image = "rbxassetid://10709819149" })
 
--- [[ MAIN TAB ]] --
-local MainGroup = Tabs.Main:Section({ Name = "Webhook Tools" })
+-- [[ MAIN TAB CONTENT ]] --
+local SettingsGroup = MainTab:Groupbox({ Name = "Farming Settings", Side = "Left" })
 
-MainGroup:Button({
-    Name = "Send Test Webhook",
-    Callback = function()
-        if WebhookURL ~= "YOUR_WEBHOOK_URL_HERE" then
-            SendHatchWebhook("Secret Santa's Hat", "❄️ **Snowflakes:** +140\n💎 **Gems:** +130\n🧼 **Bubbles:** +7.8K", true)
-        else
-            Maclib:Notify({Title = "Error", Content = "Paste your Webhook URL into the script first!"})
-        end
-    end
-})
-
--- [[ FARM TAB ]] --
-local FarmGroup = Tabs.Farm:Section({ Name = "Settings" })
-
-FarmGroup:Toggle({
+SettingsGroup:Toggle({
     Name = "Hide Hatch Animation",
     Default = false,
     Callback = function(Value)
@@ -112,16 +79,48 @@ FarmGroup:Toggle({
     end
 })
 
-FarmGroup:Toggle({
-    Name = "Auto Secret Webhook",
-    Default = false,
-    Callback = function(Value) getgenv().SecretWebhook = Value end
+SettingsGroup:Button({
+    Name = "Redeem All Codes",
+    Callback = function()
+        local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "ogbgs"}
+        for _, code in ipairs(codes) do
+            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
+            task.wait(0.1)
+        end
+    end
 })
 
--- AUTO-DETECTION: Sends webhook on real secret hatch
+-- [[ HUNTER TAB CONTENT ]] --
+local PingGroup = HunterTab:Groupbox({ Name = "Ping Rarity", Side = "Left" })
+
+PingGroup:Toggle({ Name = "Ping for Secret", Default = true, Callback = function(v) getgenv().PingSecret = v end })
+PingGroup:Toggle({ Name = "Ping for Mythic", Default = false, Callback = function(v) getgenv().PingMythic = v end })
+PingGroup:Toggle({ Name = "Ping for Shiny", Default = false, Callback = function(v) getgenv().PingShiny = v end })
+
+local TestGroup = HunterTab:Groupbox({ Name = "Testing", Side = "Right" })
+TestGroup:Button({
+    Name = "Test Shiny Mythic Webhook",
+    Callback = function()
+        SendHatchWebhook("Shiny Mythic Leviathan", "🔥 **Multi:** x2.5M\n⚡ **Speed:** 100", "Shiny Mythic")
+    end
+})
+
+-- [[ GAME DETECTION ]] --
 game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent.OnClientEvent:Connect(function(name, data)
-    if getgenv().SecretWebhook and name == "OpenEgg" and data.Rarity == "Secret" then
+    if name == "OpenEgg" and data then
+        local isShiny = data.Shiny or false
+        local isMythic = data.Mythic or false
+        local rarity = data.Rarity or "Unknown"
         local statsStr = "🔥 **Multiplier:** x" .. (data.Multiplier or "1") .. "\n⚡ **Speed:** " .. (data.Speed or "1")
-        SendHatchWebhook(data.PetName, statsStr, false)
+        
+        if rarity == "Secret" and getgenv().PingSecret then
+            SendHatchWebhook(data.PetName, statsStr, "Secret")
+        elseif isShiny and isMythic then
+            SendHatchWebhook("Shiny Mythic " .. data.PetName, statsStr, "Shiny Mythic")
+        elseif isMythic and getgenv().PingMythic then
+            SendHatchWebhook("Mythic " .. data.PetName, statsStr, "Mythic")
+        elseif isShiny and getgenv().PingShiny then
+            SendHatchWebhook("Shiny " .. data.PetName, statsStr, "Shiny")
+        end
     end
 end)
