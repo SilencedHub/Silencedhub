@@ -1,21 +1,6 @@
--- [[ SILENCED BGSI - MacLib STABLE ]] --
+-- [[ SILENCED BGSI - FULL VERSION ]] --
 
-local MacLib = nil
-local success, err = pcall(function()
-    return loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
-end)
-
--- Retry loop for Potassium stability
-local retries = 0
-while (not success or not MacLib) and retries < 15 do
-    task.wait(0.5)
-    retries = retries + 1
-    success, MacLib = pcall(function()
-        return loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
-    end)
-end
-
-if not MacLib then return warn("Maclib failed to load.") end
+local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 
 -- [[ WEBHOOK CONFIG ]] --
 local WebhookURL = "YOUR_WEBHOOK_URL_HERE"
@@ -27,7 +12,6 @@ local function SendHatchWebhook(petName, petStats, rarityType)
         ["Secret"] = 0xFFD700, ["Mythic"] = 0xFF4500, 
         ["Shiny"] = 0x00E5FF, ["Shiny Mythic"] = 0xFF00FF
     }
-
     local data = {
         ["content"] = "@everyone **" .. rarityType:upper() .. " HATCHED!**",
         ["embeds"] = {{
@@ -41,71 +25,105 @@ local function SendHatchWebhook(petName, petStats, rarityType)
             ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
         }}
     }
-
     local req = (syn and syn.request) or (http and http.request) or http_request or request
     if req then
         req({Url = WebhookURL, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = game:GetService("HttpService"):JSONEncode(data)})
     end
 end
 
--- [[ WINDOW CREATION ]] --
+-- [[ TELEPORT DATA ]] --
+local EggData = {
+    ["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8),
+    ["Void Egg"] = CFrame.new(-146, 9, -26), ["Hell Egg"] = CFrame.new(-145, 9, -36)
+}
+local WorldData = {
+    ["Overworld"] = CFrame.new(-33, 9, 2), ["Toy World"] = CFrame.new(623, 15, 11),
+    ["Candy World"] = CFrame.new(1234, 15, 20), ["Beach World"] = CFrame.new(2500, 15, 10)
+}
+
+-- [[ WINDOW ]] --
 local Window = MacLib:Window({
     Title = "SILENCED BGSI",
     Subtitle = "Bubble Gum Simulator",
-    Size = UDim2.fromOffset(550, 420),
+    Size = UDim2.fromOffset(580, 450),
     DragStyle = 1
 })
 
+task.wait(0.2) -- Render Fix
+
 -- [[ TABS ]] --
 local MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
-local HunterTab = Window:Tab({ Name = "Webhook Hunter", Image = "rbxassetid://10709819149" })
+local HunterTab = Window:Tab({ Name = "Hunter", Image = "rbxassetid://10709819149" })
+local TeleportTab = Window:Tab({ Name = "Teleports", Image = "rbxassetid://10709761066" })
 
--- [[ MAIN TAB CONTENT ]] --
+-- [[ MAIN TAB ]] --
 local SettingsGroup = MainTab:Groupbox({ Name = "Farming Settings", Side = "Left" })
-
 SettingsGroup:Toggle({
     Name = "Hide Hatch Animation",
     Default = false,
-    Callback = function(Value)
-        getgenv().HideHatch = Value
-        task.spawn(function()
-            while getgenv().HideHatch do
-                local pGui = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
-                local ui = pGui and (pGui:FindFirstChild("HatchUI") or pGui:FindFirstChild("EggHatch"))
-                if ui then ui.Enabled = false end
-                task.wait(0.1)
-            end
-        end)
-    end
+    Callback = function(v) getgenv().HideHatch = v end
 })
-
 SettingsGroup:Button({
     Name = "Redeem All Codes",
     Callback = function()
         local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "ogbgs"}
         for _, code in ipairs(codes) do
             pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
-            task.wait(0.1)
+            task.wait(0.05)
         end
     end
 })
 
--- [[ HUNTER TAB CONTENT ]] --
+-- [[ HUNTER TAB ]] --
 local PingGroup = HunterTab:Groupbox({ Name = "Ping Rarity", Side = "Left" })
-
 PingGroup:Toggle({ Name = "Ping for Secret", Default = true, Callback = function(v) getgenv().PingSecret = v end })
 PingGroup:Toggle({ Name = "Ping for Mythic", Default = false, Callback = function(v) getgenv().PingMythic = v end })
 PingGroup:Toggle({ Name = "Ping for Shiny", Default = false, Callback = function(v) getgenv().PingShiny = v end })
 
 local TestGroup = HunterTab:Groupbox({ Name = "Testing", Side = "Right" })
 TestGroup:Button({
-    Name = "Test Shiny Mythic Webhook",
+    Name = "Test Webhook",
+    Callback = function() SendHatchWebhook("Test Leviathan", "🔥 **Multi:** x2M", "Shiny Mythic") end
+})
+
+-- [[ TELEPORT TAB ]] --
+local EggGroup = TeleportTab:Groupbox({ Name = "Egg Teleports", Side = "Left" })
+local SelectedEgg = "Common Egg"
+
+EggGroup:Dropdown({
+    Name = "Select Egg",
+    Items = {"Common Egg", "Spotted Egg", "Void Egg", "Hell Egg"},
+    Default = "Common Egg",
+    Callback = function(v) SelectedEgg = v end
+})
+
+EggGroup:Button({
+    Name = "TP to Egg",
     Callback = function()
-        SendHatchWebhook("Shiny Mythic Leviathan", "🔥 **Multi:** x2.5M\n⚡ **Speed:** 100", "Shiny Mythic")
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp and EggData[SelectedEgg] then hrp.CFrame = EggData[SelectedEgg] end
     end
 })
 
--- [[ GAME DETECTION ]] --
+local WorldGroup = TeleportTab:Groupbox({ Name = "World Teleports", Side = "Right" })
+local SelectedWorld = "Overworld"
+
+WorldGroup:Dropdown({
+    Name = "Select World",
+    Items = {"Overworld", "Toy World", "Candy World", "Beach World"},
+    Default = "Overworld",
+    Callback = function(v) SelectedWorld = v end
+})
+
+WorldGroup:Button({
+    Name = "TP to World",
+    Callback = function()
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp and WorldData[SelectedWorld] then hrp.CFrame = WorldData[SelectedWorld] end
+    end
+})
+
+-- [[ AUTO DETECTION ]] --
 game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent.OnClientEvent:Connect(function(name, data)
     if name == "OpenEgg" and data then
         local isShiny = data.Shiny or false
