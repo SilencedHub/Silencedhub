@@ -1,62 +1,48 @@
--- Wait for game to load
+-- [[ SILENCED BGSI MASTER SCRIPT - RAYFIELD EDITION ]] --
+-- Master Version: Added Event Tab Placeholder
+
 if not game:IsLoaded() then game.Loaded:Wait() end
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Silenced Bgsi | Rayfield Edition",
+    Name = "Silenced Bgsi | Master Edition",
     LoadingTitle = "Silenced Hub",
     LoadingSubtitle = "by 25ms",
     ConfigurationSaving = {
         Enabled = true,
         FolderName = "SilencedHub",
-        FileName = "Config"
+        FileName = "MasterConfig"
     },
     KeySystem = false
 })
 
--- Global Variables
+-- [[ GLOBAL STATES ]] --
 getgenv().Config = { Webhook_enabled = false, Webhook = "", Secret_Only = true }
 local AutoBubble, AutoSell, AutoCollect = false, false, false
 local AutoSpamE = false
 local AutoBuyGum, AutoBuyUpgrades = false, false
+local SellCooldown = 5
 local SelectedEgg = "Common Egg"
 
--- Data Tables
+-- [[ DATA TABLES ]] --
 local Codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "season6", "fishfix", "onemorebonus", "fishe", "world3", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
+local World1Points = {Spawn = CFrame.new(58, 22, -71), ["Floating Island"] = CFrame.new(-16, 423, 143), ["Outer Space"] = CFrame.new(41, 2663, -7), Twilight = CFrame.new(-78, 6862, 88), ["The Void"] = CFrame.new(16, 10146, 151), Zen = CFrame.new(36, 15971, 41)}
+local World2Points = {Spawn = CFrame.new(9981, 26, 172), ["Dice Island"] = CFrame.new(9900, 2907, 208), ["Minecart Forest"] = CFrame.new(9882, 7681, 203), ["Robot Factory"] = CFrame.new(9887, 13408, 227), ["Hyperwave Island"] = CFrame.new(9885, 20088, 226)}
+local EggPoints = {["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8), ["Iceshard Egg"] = CFrame.new(-118, 9, 10), ["Spikey Egg"] = CFrame.new(-126, 9, 6), ["Magma Egg"] = CFrame.new(-135, 9, 1), ["Crystal Egg"] = CFrame.new(-140, 9, -7), ["Lunar Egg"] = CFrame.new(-144, 9, -16), ["Void Egg"] = CFrame.new(-146, 9, -26), ["Hell Egg"] = CFrame.new(-145, 9, -36), ["Nightmare Egg"] = CFrame.new(-142, 9, -45), ["Rainbow Egg"] = CFrame.new(-137, 9, -54), ["Snowman Egg"] = CFrame.new(-130, 9, -60), ["Mining Egg"] = CFrame.new(-120, 9, -64), ["Cyber Egg"] = CFrame.new(-94, 9, -63), ["Neon Egg"] = CFrame.new(-83, 10, -58), ["Infinity Egg"] = CFrame.new(-99, 8, -27), ["New Years Egg"] = CFrame.new(83, 9, -13)}
 
-local EggPoints = {
-    ["Common Egg"] = CFrame.new(-83, 9, 3),
-    ["Spotted Egg"] = CFrame.new(-94, 9, 8),
-    ["Iceshard Egg"] = CFrame.new(-118, 9, 10),
-    ["Spikey Egg"] = CFrame.new(-126, 9, 6),
-    ["Magma Egg"] = CFrame.new(-135, 9, 1),
-    ["Crystal Egg"] = CFrame.new(-140, 9, -7),
-    ["Lunar Egg"] = CFrame.new(-144, 9, -16),
-    ["Void Egg"] = CFrame.new(-146, 9, -26),
-    ["Hell Egg"] = CFrame.new(-145, 9, -36),
-    ["Nightmare Egg"] = CFrame.new(-142, 9, -45),
-    ["Rainbow Egg"] = CFrame.new(-137, 9, -54),
-    ["Snowman Egg"] = CFrame.new(-130, 9, -60),
-    ["Mining Egg"] = CFrame.new(-120, 9, -64),
-    ["Cyber Egg"] = CFrame.new(-94, 9, -63),
-    ["Neon Egg"] = CFrame.new(-83, 10, -58),
-    ["Infinity Egg"] = CFrame.new(-99, 8, -27),
-    ["New Years Egg"] = CFrame.new(83, 9, -13)
-}
-
--- Tabs
+-- [[ TABS ]] --
 local MainTab = Window:CreateTab("Main", 4483362458)
 local FarmTab = Window:CreateTab("Auto Farm", 4483362458)
 local EggTab = Window:CreateTab("Eggs", 4483362458)
-local WebhookTab = Window:CreateTab("Webhook", 4483362458)
+local EventTab = Window:CreateTab("Event", 4483362458) -- New Empty Tab
 local TeleportTab = Window:CreateTab("Teleports", 4483362458)
+local WebhookTab = Window:CreateTab("Webhook", 4483362458)
 
 -------------------------------------------------------------------------------
--- MAIN TAB (Added Auto Buy)
+-- MAIN TAB
 -------------------------------------------------------------------------------
 MainTab:CreateSection("Auto Shop")
-
 MainTab:CreateToggle({
     Name = "Auto Buy Gum",
     CurrentValue = false,
@@ -65,10 +51,7 @@ MainTab:CreateToggle({
         AutoBuyGum = Value
         task.spawn(function()
             local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
-            while AutoBuyGum do
-                pcall(function() RF:InvokeServer("GumShopPurchaseAll") end)
-                task.wait(2)
-            end
+            while AutoBuyGum do pcall(function() RF:InvokeServer("GumShopPurchaseAll") end) task.wait(2) end
         end)
     end,
 })
@@ -81,13 +64,7 @@ MainTab:CreateToggle({
         AutoBuyUpgrades = Value
         task.spawn(function()
             local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
-            while AutoBuyUpgrades do
-                -- Loops through potential upgrade IDs
-                for i = 1, 15 do
-                    pcall(function() RF:InvokeServer("UpgradeMastery", i) end)
-                end
-                task.wait(5)
-            end
+            while AutoBuyUpgrades do for i = 1, 15 do pcall(function() RF:InvokeServer("UpgradeMastery", i) end) end task.wait(5) end
         end)
     end,
 })
@@ -97,11 +74,7 @@ MainTab:CreateButton({
     Name = "Redeem All Codes",
     Callback = function()
         local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
-        for _, code in pairs(Codes) do
-            pcall(function() RF:InvokeServer("RedeemCode", code) end)
-            task.wait(0.1)
-        end
-        Rayfield:Notify({Title = "Codes", Content = "Redemption Complete!", Duration = 3})
+        for _, code in pairs(Codes) do pcall(function() RF:InvokeServer("RedeemCode", code) end) task.wait(0.1) end
     end,
 })
 
@@ -112,14 +85,35 @@ FarmTab:CreateSection("Farming")
 FarmTab:CreateToggle({
     Name = "Auto Bubble",
     CurrentValue = false,
+    Flag = "AutoBubble",
     Callback = function(Value)
         AutoBubble = Value
         task.spawn(function()
             local RE = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
-            while AutoBubble do
-                RE:FireServer("BlowBubble")
-                task.wait(0.1)
-            end
+            while AutoBubble do RE:FireServer("BlowBubble") task.wait(0.1) end
+        end)
+    end,
+})
+
+FarmTab:CreateSlider({
+    Name = "Sell Cooldown",
+    Range = {1, 60},
+    Increment = 1,
+    Suffix = "s",
+    CurrentValue = 5,
+    Flag = "SellSlider",
+    Callback = function(Value) SellCooldown = Value end,
+})
+
+FarmTab:CreateToggle({
+    Name = "Auto Sell",
+    CurrentValue = false,
+    Flag = "AutoSell",
+    Callback = function(Value)
+        AutoSell = Value
+        task.spawn(function()
+            local RE = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
+            while AutoSell do RE:FireServer("SellBubble") task.wait(SellCooldown) end
         end)
     end,
 })
@@ -127,6 +121,7 @@ FarmTab:CreateToggle({
 FarmTab:CreateToggle({
     Name = "Auto Collect Items",
     CurrentValue = false,
+    Flag = "AutoCollect",
     Callback = function(Value)
         AutoCollect = Value
         task.spawn(function()
@@ -137,10 +132,7 @@ FarmTab:CreateToggle({
                     if folder then
                         for _, sub in pairs(folder:GetChildren()) do
                             for _, item in pairs(sub:GetChildren()) do
-                                if #item.Name >= 30 then 
-                                    CollectRem:FireServer(item.Name)
-                                    item:Destroy()
-                                end
+                                if #item.Name >= 30 then CollectRem:FireServer(item.Name) item:Destroy() end
                             end
                         end
                     end
@@ -152,12 +144,13 @@ FarmTab:CreateToggle({
 })
 
 -------------------------------------------------------------------------------
--- EGGS TAB (Fixed Teleports)
+-- EGGS TAB
 -------------------------------------------------------------------------------
 EggTab:CreateSection("Hatching")
 EggTab:CreateToggle({
-    Name = "Auto Spam E (Hatch)",
+    Name = "Auto Spam E (Hold E)",
     CurrentValue = false,
+    Flag = "AutoSpamE",
     Callback = function(Value)
         AutoSpamE = Value
         task.spawn(function()
@@ -172,40 +165,63 @@ EggTab:CreateToggle({
     end,
 })
 
-EggTab:CreateSection("Fixed Egg Teleports")
+EggTab:CreateSection("Egg Teleports")
 EggTab:CreateDropdown({
     Name = "Select Egg",
     Options = {"Common Egg","Spotted Egg","Iceshard Egg","Spikey Egg","Magma Egg","Crystal Egg","Lunar Egg","Void Egg","Hell Egg","Nightmare Egg","Rainbow Egg","Snowman Egg","Mining Egg","Cyber Egg","Neon Egg","Infinity Egg","New Years Egg"},
     CurrentOption = "Common Egg",
+    Flag = "EggDrop",
     Callback = function(Option) SelectedEgg = Option end,
 })
 
 EggTab:CreateButton({
     Name = "Teleport to Selected Egg",
     Callback = function()
-        pcall(function()
-            local char = game.Players.LocalPlayer.Character
-            local hrp = char:FindFirstChild("HumanoidRootPart")
-            if hrp and EggPoints[SelectedEgg] then
-                -- Add a tiny offset so you don't get stuck inside the egg part
-                hrp.CFrame = EggPoints[SelectedEgg] + Vector3.new(0, 3, 0)
-            end
-        end)
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp and EggPoints[SelectedEgg] then hrp.CFrame = EggPoints[SelectedEgg] + Vector3.new(0, 3, 0) end
     end,
 })
 
 -------------------------------------------------------------------------------
+-- EVENT TAB (Placeholder)
+-------------------------------------------------------------------------------
+EventTab:CreateSection("Event Features")
+EventTab:CreateParagraph({Title = "Work in Progress", Content = "Think about what features you want here. Once you decide, let me know!"})
+
+-------------------------------------------------------------------------------
+-- TELEPORTS TAB
+-------------------------------------------------------------------------------
+TeleportTab:CreateSection("World 1")
+for name, cf in pairs(World1Points) do
+    TeleportTab:CreateButton({Name = "Go to " .. name, Callback = function() 
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp then hrp.CFrame = cf end
+    end})
+end
+
+TeleportTab:CreateSection("World 2")
+for name, cf in pairs(World2Points) do
+    TeleportTab:CreateButton({Name = "Go to " .. name, Callback = function() 
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp then hrp.CFrame = cf end
+    end})
+end
+
+-------------------------------------------------------------------------------
 -- WEBHOOK TAB
 -------------------------------------------------------------------------------
+WebhookTab:CreateSection("Discord Webhook")
 WebhookTab:CreateInput({
     Name = "Webhook URL",
-    PlaceholderText = "Paste Here",
+    PlaceholderText = "Paste Discord Link",
+    Flag = "WebUrl",
     Callback = function(Text) getgenv().Config.Webhook = Text end,
 })
 
 WebhookTab:CreateToggle({
     Name = "Enable Webhook",
     CurrentValue = false,
+    Flag = "WebToggle",
     Callback = function(Value) getgenv().Config.Webhook_enabled = Value end,
 })
 
@@ -218,7 +234,7 @@ WebhookTab:CreateButton({
                 Url = getgenv().Config.Webhook,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
-                Body = game:GetService("HttpService"):JSONEncode({embeds={{title="Webhook Test", description="Working!"}}})
+                Body = game:GetService("HttpService"):JSONEncode({embeds={{title="Webhook Test", description="Webhook is working!"}}})
             })
         end
     end,
