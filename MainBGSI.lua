@@ -1,85 +1,146 @@
--- [[ SILENCED BGSI - MACLIB ]] --
-local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
-local VIM = game:GetService("VirtualInputManager")
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- [[ WINDOW ]] --
-local Window = MacLib:Window({
-    Title = "SILENCED BGSI",
-    Subtitle = "Bubble Gum Simulator",
-    Size = UDim2.fromOffset(580, 460),
-    DragStyle = 1
-})
+-- [[ WEBHOOK CONFIG ]] --
+local WebhookURL = "YOUR_WEBHOOK_URL_HERE"
 
--- FORCED RENDER LOGIC: 
--- This prevents the "Black Screen" by waiting for the UI to exist in the game engine
-local UI_Container = game:GetService("CoreGui"):WaitForChild("Maclib", 10)
-task.wait(1) 
+local function SendHatchWebhook(petName, petStats, rarityType)
+    local player = game.Players.LocalPlayer
+    local stats = player.leaderstats
+    local rarityColors = {
+        ["Secret"] = 16768256, -- Gold
+        ["Mythic"] = 16729856, -- Orange
+        ["Shiny"] = 58879,     -- Cyan
+        ["Shiny Mythic"] = 16711935 -- Magenta
+    }
 
--- [[ TABS ]] --
--- We wrap these in a pcall to prevent the "Missing Method" error from your screenshot
-local MainTab, HunterTab, EggTab
-local success = pcall(function()
-    MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
-    HunterTab = Window:Tab({ Name = "Hunter", Image = "rbxassetid://10709819149" })
-    EggTab = Window:Tab({ Name = "Eggs & Worlds", Image = "rbxassetid://10709761066" })
-end)
+    local data = {
+        ["content"] = "@everyone **" .. rarityType:upper() .. " HATCHED!**",
+        ["embeds"] = {{
+            ["title"] = "||" .. player.Name .. "|| hatched a " .. petName,
+            ["color"] = rarityColors[rarityType] or 16777215,
+            ["fields"] = {
+                {["name"] = "User Info:", ["value"] = "🧼 **Bubbles:** " .. stats.Bubbles.Value .. "\n💰 **Coins:** " .. stats.Coins.Value .. "\n💎 **Gems:** " .. stats.Gems.Value, ["inline"] = false},
+                {["name"] = "Pet Info (" .. rarityType .. "):", ["value"] = petStats, ["inline"] = false}
+            },
+            ["footer"] = {["text"] = "Silenced BGSI • Stable Edition"},
+            ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
+        }}
+    }
 
-if not success then
-    warn("Maclib Tab Error: The UI failed to initialize methods. Retrying...")
-    task.wait(1)
-    -- Final attempt to build
-    MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
-    HunterTab = Window:Tab({ Name = "Hunter", Image = "rbxassetid://10709819149" })
-    EggTab = Window:Tab({ Name = "Eggs & Worlds", Image = "rbxassetid://10709761066" })
+    local req = (syn and syn.request) or (http and http.request) or http_request or request
+    if req then
+        req({Url = WebhookURL, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = game:GetService("HttpService"):JSONEncode(data)})
+    end
 end
 
--- [[ TAB CONTENT ]] --
--- Content is added only after the tabs are confirmed to exist
-local MainGroup = MainTab:Groupbox({ Name = "Automation", Side = "Left" })
-MainGroup:Toggle({
-    Name = "Hide Hatch Animation",
-    Default = false,
-    Callback = function(v) getgenv().HideHatch = v end
+-- [[ WINDOW ]] --
+local Window = Rayfield:CreateWindow({
+   Name = "SILENCED BGSI",
+   LoadingTitle = "Loading Stable Hunter...",
+   LoadingSubtitle = "by Silenced",
+   ConfigurationSaving = { Enabled = false }
 })
 
-local EggGroup = EggTab:Groupbox({ Name = "Teleports", Side = "Left" })
-local SelectedTP = "Common Egg"
-EggGroup:Dropdown({
-    Name = "Select Location",
-    Items = {"Common Egg", "Void Egg", "Hell Egg", "Overworld"},
-    Default = "Common Egg",
-    Callback = function(v) SelectedTP = v end
+-- [[ TABS ]] --
+local MainTab = Window:CreateTab("Main", 4483362458)
+local HunterTab = Window:CreateTab("Hunter", 4483362458)
+local EggTab = Window:Tab("Eggs & Worlds", 4483362458)
+
+-- [[ MAIN TAB ]] --
+MainTab:CreateSection("General Automation")
+
+MainTab:CreateToggle({
+   Name = "Hide Hatch Animation",
+   CurrentValue = false,
+   Callback = function(Value)
+      getgenv().HideHatch = Value
+      task.spawn(function()
+         while getgenv().HideHatch do
+            local pGui = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+            local ui = pGui and (pGui:FindFirstChild("HatchUI") or pGui:FindFirstChild("EggHatch"))
+            if ui then ui.Enabled = false end
+            task.wait(0.1)
+         end
+      end)
+   end,
 })
 
-EggGroup:Button({
-    Name = "Teleport",
-    Callback = function()
-        local coords = {
-            ["Common Egg"] = CFrame.new(-83, 9, 3),
-            ["Void Egg"] = CFrame.new(-146, 9, -26),
-            ["Hell Egg"] = CFrame.new(-145, 9, -36),
-            ["Overworld"] = CFrame.new(-33, 9, 2)
-        }
-        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp and coords[SelectedTP] then hrp.CFrame = coords[SelectedTP] end
-    end
+-- [[ HUNTER TAB ]] --
+HunterTab:CreateSection("Webhook Pings")
+
+HunterTab:CreateToggle({
+   Name = "Ping for Secret",
+   CurrentValue = true,
+   Callback = function(Value) getgenv().PingSecret = Value end,
 })
 
-local HatchGroup = EggTab:Groupbox({ Name = "Hatch Tools", Side = "Right" })
-HatchGroup:Toggle({
-    Name = "Auto Spam E",
-    Default = false,
-    Callback = function(Value)
-        getgenv().SpamE = Value
-        task.spawn(function()
-            while getgenv().SpamE do
-                VIM:SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                task.wait(0.01)
-                VIM:SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                task.wait(0.01)
-            end
-        end)
-    end
+HunterTab:CreateToggle({
+   Name = "Ping for Mythic",
+   CurrentValue = false,
+   Callback = function(Value) getgenv().PingMythic = Value end,
 })
 
-MacLib:SetFolder("SilencedBGSI")
+HunterTab:CreateButton({
+   Name = "Test Webhook",
+   Callback = function()
+      SendHatchWebhook("Test Pet", "🔥 **Multi:** x100", "Secret")
+   end,
+})
+
+-- [[ EGGS & WORLDS TAB ]] --
+EggTab:CreateSection("Hatching Tools")
+
+EggTab:CreateToggle({
+   Name = "Auto Spam E",
+   CurrentValue = false,
+   Callback = function(Value)
+      getgenv().SpamE = Value
+      task.spawn(function()
+         local VIM = game:GetService("VirtualInputManager")
+         while getgenv().SpamE do
+            VIM:SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(0.01)
+            VIM:SendKeyEvent(false, Enum.KeyCode.E, false, game)
+            task.wait(0.01)
+         end
+      end)
+   end,
+})
+
+EggTab:CreateSection("Teleports")
+
+EggTab:CreateDropdown({
+   Name = "Select Location",
+   Options = {"Common Egg", "Void Egg", "Hell Egg", "Overworld", "Toy World"},
+   CurrentOption = {"Common Egg"},
+   MultipleOptions = false,
+   Callback = function(Option) getgenv().SelectedTP = Option[1] end,
+})
+
+EggTab:CreateButton({
+   Name = "Teleport Now",
+   Callback = function()
+      local coords = {
+         ["Common Egg"] = CFrame.new(-83, 9, 3),
+         ["Void Egg"] = CFrame.new(-146, 9, -26),
+         ["Hell Egg"] = CFrame.new(-145, 9, -36),
+         ["Overworld"] = CFrame.new(-33, 9, 2),
+         ["Toy World"] = CFrame.new(623, 15, 11)
+      }
+      local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+      if hrp and coords[getgenv().SelectedTP] then hrp.CFrame = coords[getgenv().SelectedTP] end
+   end,
+})
+
+-- [[ AUTO DETECTION ]] --
+game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent.OnClientEvent:Connect(function(name, data)
+    if name == "OpenEgg" and data then
+        local isShiny = data.Shiny or false
+        local isMythic = data.Mythic or false
+        local rarity = data.Rarity or "Unknown"
+        local statsStr = "🔥 **Multiplier:** x" .. (data.Multiplier or "1") .. "\n⚡ **Speed:** " .. (data.Speed or "1")
+        
+        if rarity == "Secret" and getgenv().PingSecret then
+            SendHatchWebhook(data.PetName, statsStr, "Secret")
+        elseif isShiny and isMythic then
+            SendHatchWebhook("Shiny Mythic " .. data.PetName, statsStr, "Shiny Myth
