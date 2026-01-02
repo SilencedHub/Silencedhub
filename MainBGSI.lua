@@ -1,36 +1,40 @@
--- [[ SILENCED BGSI - FINAL STABLE VERSION ]] --
+-- [[ SILENCED BGSI - STABLE BOOTER ]] --
 
--- 1. ROBUST LIBRARY LOADING
-local WindUI
-local success, err = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Fluwwy/WindUI/main/Main.lua"))()
-end)
+local WindUI = nil
 
-if success and err then
-    WindUI = err
-else
-    -- Fallback to secondary source if GitHub is slow
-    WindUI = loadstring(game:HttpGet("https://tree-hub.vercel.app/api/main/windui"))()
+-- 1. WAIT UNTIL LIBRARY LOADS
+local function LoadLib()
+    local success, result = pcall(function()
+        return loadstring(game:HttpGet("https://raw.githubusercontent.com/Fluwwy/WindUI/main/Main.lua"))()
+    end)
+    
+    if success and result then
+        WindUI = result
+    else
+        -- Fallback link
+        local success2, result2 = pcall(function()
+            return loadstring(game:HttpGet("https://tree-hub.vercel.app/api/main/windui"))()
+        end)
+        if success2 then WindUI = result2 end
+    end
 end
 
-local DiscordLink = "https://discord.gg/YOUR_LINK_HERE" -- Replace with your actual invite
+LoadLib()
 
--- 2. WINDOW CREATION
-local Window = WindUI:CreateWindow({
-    Title = "SILENCED BGSI",
-    SubTitle = "Bubble Gum Simulator",
-    Icon = "rbxassetid://10734950309", 
-    Author = "Silenced",
-    Folder = "SilencedConfig"
-})
+-- Force the script to wait until WindUI is no longer nil
+local retryCount = 0
+while not WindUI and retryCount < 50 do
+    retryCount = retryCount + 1
+    task.wait(0.2)
+end
 
--- 3. TABS
-local MainTab = Window:CreateTab("Main", "home")
-local AutoFarmTab = Window:CreateTab("Auto Farm", "swords")
-local EggsTab = Window:CreateTab("Eggs", "egg")
-local SettingsTab = Window:CreateTab("Settings", "settings")
+if not WindUI then
+    return warn("CRITICAL ERROR: WindUI could not be loaded. Check your internet or executor.")
+end
 
--- [[ DATA TABLES ]] --
+-- 2. DISCORD & DATA
+local DiscordLink = "https://discord.gg/YOUR_LINK_HERE" 
+
 local World1Data = {
     ["Spawn"] = CFrame.new(58, 9, -103), ["Floating Island"] = CFrame.new(-16, 423, 143),
     ["Outer Space"] = CFrame.new(41, 2663, -7), ["Twilight"] = CFrame.new(-78, 6862, 88),
@@ -49,45 +53,46 @@ local EggData = {
     ["New Years Egg"] = CFrame.new(83, 9, -13)
 }
 
--- [[ MAIN TAB ]] --
+-- 3. WINDOW CREATION (Line 48ish now)
+local Window = WindUI:CreateWindow({
+    Title = "SILENCED BGSI",
+    SubTitle = "Bubble Gum Simulator",
+    Icon = "rbxassetid://10734950309", 
+    Author = "Silenced",
+    Folder = "SilencedConfig"
+})
+
+-- [[ TABS & LOGIC ]] --
+local MainTab = Window:CreateTab("Main", "home")
+local AutoFarmTab = Window:CreateTab("Auto Farm", "swords")
+local EggsTab = Window:CreateTab("Eggs", "egg")
+local SettingsTab = Window:CreateTab("Settings", "settings")
+
+-- Main Tab
 local CodeSection = MainTab:AddSection("Rewards & Worlds")
 CodeSection:AddButton({
     Title = "Redeem All Codes",
-    Desc = "Redeems all active codes",
     Callback = function()
         local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
-        local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
         for _, code in ipairs(codes) do
-            pcall(function() remote:InvokeServer("RedeemCode", code) end)
+            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
             task.wait(0.1)
         end
         WindUI:Notify({Title = "Success", Content = "Codes Redeemed!", Type = "Success"})
     end
 })
 
-CodeSection:AddButton({
-    Title = "Unlock World 1 Islands",
-    Callback = function()
-        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp then
-            for _, cf in pairs(World1Data) do hrp.CFrame = cf task.wait(0.4) end
-        end
-    end
-})
-
--- [[ AUTO FARM TAB ]] --
+-- AutoFarm Tab
 local FarmSection = AutoFarmTab:AddSection("Bubble Farming")
 local SellCooldown = 5
 
 FarmSection:AddToggle({
     Title = "Auto Blow Bubbles",
-    Value = false,
     Callback = function(state)
         getgenv().AutoBlow = state
         task.spawn(function()
-            local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
             while getgenv().AutoBlow do
-                pcall(function() remote:FireServer("BlowBubble") end)
+                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("BlowBubble") end)
                 task.wait(0.1)
             end
         end)
@@ -102,70 +107,51 @@ FarmSection:AddSlider({
 
 FarmSection:AddToggle({
     Title = "Auto Sell",
-    Value = false,
     Callback = function(state)
         getgenv().AutoSell = state
         task.spawn(function()
-            local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
             while getgenv().AutoSell do
-                pcall(function() remote:FireServer("SellBubble") end)
+                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("SellBubble") end)
                 task.wait(SellCooldown)
             end
         end)
     end
 })
 
--- [[ EGGS TAB ]] --
+-- Egg Tab
 local SelectedEgg = "Common Egg"
 local EggNames = {}
 for name, _ in pairs(EggData) do table.insert(EggNames, name) end
 table.sort(EggNames)
 
-local EggSection = EggsTab:AddSection("Teleports")
-EggSection:AddDropdown({
-    Title = "Select Egg Location",
+EggsTab:AddSection("Teleports"):AddDropdown({
+    Title = "Select Egg",
     Values = EggNames,
     Default = "Common Egg",
     Callback = function(v) SelectedEgg = v end
 })
 
-EggSection:AddButton({
+EggsTab:AddButton({
     Title = "Teleport",
     Callback = function()
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp and EggData[SelectedEgg] then hrp.CFrame = EggData[SelectedEgg] end
+        if hrp then hrp.CFrame = EggData[SelectedEgg] end
     end
 })
 
--- [[ SETTINGS TAB ]] --
-local UISet = SettingsTab:AddSection("Interface")
-UISet:AddDropdown({
+-- Settings Tab
+SettingsTab:AddSection("Interface"):AddDropdown({
     Title = "Theme",
     Values = {"Dark", "Light", "Aqua", "Amethyst", "Rose"},
     Default = "Dark",
     Callback = function(v) WindUI:SetTheme(v) end
 })
 
-UISet:AddKeybind({
-    Title = "Toggle Menu",
-    Default = Enum.KeyCode.RightControl,
-    Callback = function() end -- Handled internally by WindUI
-})
-
-local Socials = SettingsTab:AddSection("Community")
-Socials:AddButton({
+SettingsTab:AddSection("Community"):AddButton({
     Title = "Copy Discord Link",
-    Callback = function()
-        setclipboard(DiscordLink)
-        WindUI:Notify({Title = "Discord", Content = "Copied to clipboard!", Type = "Success"})
-    end
+    Callback = function() setclipboard(DiscordLink) end
 })
 
--- [[ INITIALIZE ]] --
+-- Initialize
 setclipboard(DiscordLink)
-WindUI:Notify({
-    Title = "Silenced BGSI",
-    Content = "Discord link copied to clipboard!",
-    Type = "Success",
-    Duration = 5
-})
+WindUI:Notify({Title = "Loaded", Content = "Discord link copied!", Type = "Success"})
