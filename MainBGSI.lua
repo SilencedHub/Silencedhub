@@ -1,9 +1,21 @@
--- [[ SILENCED BGSI - COMPLETE VERSION WITH DISCORD ]] --
+-- [[ SILENCED BGSI - FINAL STABLE VERSION ]] --
 
-local WindUI = loadstring(game:HttpGet("https://tree-hub.vercel.app/api/main/windui"))()
-local DiscordLink = "https://discord.gg/YOUR_LINK_HERE" -- Change this to your actual link
+-- 1. ROBUST LIBRARY LOADING
+local WindUI
+local success, err = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/Fluwwy/WindUI/main/Main.lua"))()
+end)
 
--- 1. WINDOW CREATION
+if success and err then
+    WindUI = err
+else
+    -- Fallback to secondary source if GitHub is slow
+    WindUI = loadstring(game:HttpGet("https://tree-hub.vercel.app/api/main/windui"))()
+end
+
+local DiscordLink = "https://discord.gg/YOUR_LINK_HERE" -- Replace with your actual invite
+
+-- 2. WINDOW CREATION
 local Window = WindUI:CreateWindow({
     Title = "SILENCED BGSI",
     SubTitle = "Bubble Gum Simulator",
@@ -12,7 +24,7 @@ local Window = WindUI:CreateWindow({
     Folder = "SilencedConfig"
 })
 
--- 2. TABS
+-- 3. TABS
 local MainTab = Window:CreateTab("Main", "home")
 local AutoFarmTab = Window:CreateTab("Auto Farm", "swords")
 local EggsTab = Window:CreateTab("Eggs", "egg")
@@ -37,11 +49,11 @@ local EggData = {
     ["New Years Egg"] = CFrame.new(83, 9, -13)
 }
 
--- [[ MAIN TAB LOGIC ]] --
+-- [[ MAIN TAB ]] --
 local CodeSection = MainTab:AddSection("Rewards & Worlds")
 CodeSection:AddButton({
     Title = "Redeem All Codes",
-    Desc = "Redeems all active game codes",
+    Desc = "Redeems all active codes",
     Callback = function()
         local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
         local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
@@ -49,7 +61,7 @@ CodeSection:AddButton({
             pcall(function() remote:InvokeServer("RedeemCode", code) end)
             task.wait(0.1)
         end
-        WindUI:Notify({Title = "Codes", Content = "Redemption Complete!", Type = "Success"})
+        WindUI:Notify({Title = "Success", Content = "Codes Redeemed!", Type = "Success"})
     end
 })
 
@@ -63,17 +75,19 @@ CodeSection:AddButton({
     end
 })
 
--- [[ AUTO FARM TAB LOGIC ]] --
+-- [[ AUTO FARM TAB ]] --
 local FarmSection = AutoFarmTab:AddSection("Bubble Farming")
 local SellCooldown = 5
 
 FarmSection:AddToggle({
     Title = "Auto Blow Bubbles",
     Value = false,
-    Callback = function(v) getgenv().AutoBlow = v
+    Callback = function(state)
+        getgenv().AutoBlow = state
         task.spawn(function()
+            local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
             while getgenv().AutoBlow do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("BlowBubble") end)
+                pcall(function() remote:FireServer("BlowBubble") end)
                 task.wait(0.1)
             end
         end)
@@ -81,7 +95,7 @@ FarmSection:AddToggle({
 })
 
 FarmSection:AddSlider({
-    Title = "Auto Sell Interval",
+    Title = "Sell Interval",
     Min = 5, Max = 100, Default = 5,
     Callback = function(v) SellCooldown = v end
 })
@@ -89,23 +103,25 @@ FarmSection:AddSlider({
 FarmSection:AddToggle({
     Title = "Auto Sell",
     Value = false,
-    Callback = function(v) getgenv().AutoSell = v
+    Callback = function(state)
+        getgenv().AutoSell = state
         task.spawn(function()
+            local remote = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent
             while getgenv().AutoSell do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("SellBubble") end)
+                pcall(function() remote:FireServer("SellBubble") end)
                 task.wait(SellCooldown)
             end
         end)
     end
 })
 
--- [[ EGGS TAB LOGIC ]] --
+-- [[ EGGS TAB ]] --
 local SelectedEgg = "Common Egg"
 local EggNames = {}
 for name, _ in pairs(EggData) do table.insert(EggNames, name) end
 table.sort(EggNames)
 
-local EggSection = EggsTab:AddSection("Egg Teleports")
+local EggSection = EggsTab:AddSection("Teleports")
 EggSection:AddDropdown({
     Title = "Select Egg Location",
     Values = EggNames,
@@ -117,63 +133,39 @@ EggSection:AddButton({
     Title = "Teleport",
     Callback = function()
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp then hrp.CFrame = EggData[SelectedEgg] end
+        if hrp and EggData[SelectedEgg] then hrp.CFrame = EggData[SelectedEgg] end
     end
 })
 
--- [[ SETTINGS TAB LOGIC ]] --
-local UISettings = SettingsTab:AddSection("Interface Customization")
-
-UISettings:AddDropdown({
-    Title = "UI Theme",
+-- [[ SETTINGS TAB ]] --
+local UISet = SettingsTab:AddSection("Interface")
+UISet:AddDropdown({
+    Title = "Theme",
     Values = {"Dark", "Light", "Aqua", "Amethyst", "Rose"},
     Default = "Dark",
     Callback = function(v) WindUI:SetTheme(v) end
 })
 
-UISettings:AddToggle({
-    Title = "Transparency (Acrylic)",
-    Value = true,
-    Callback = function(v) Window:SetTransparency(v) end
+UISet:AddKeybind({
+    Title = "Toggle Menu",
+    Default = Enum.KeyCode.RightControl,
+    Callback = function() end -- Handled internally by WindUI
 })
 
-local SocialSection = SettingsTab:AddSection("Community")
-
-SocialSection:AddButton({
-    Title = "Copy Discord Invite",
-    Desc = "Copies link to your clipboard",
+local Socials = SettingsTab:AddSection("Community")
+Socials:AddButton({
+    Title = "Copy Discord Link",
     Callback = function()
         setclipboard(DiscordLink)
-        WindUI:Notify({Title = "Discord", Content = "Link copied to clipboard!", Type = "Success"})
+        WindUI:Notify({Title = "Discord", Content = "Copied to clipboard!", Type = "Success"})
     end
 })
 
--- [[ INITIALIZATION ]] --
-
--- Auto-copy on load
+-- [[ INITIALIZE ]] --
 setclipboard(DiscordLink)
-
 WindUI:Notify({
-    Title = "Silenced BGSI Loaded",
+    Title = "Silenced BGSI",
     Content = "Discord link copied to clipboard!",
     Type = "Success",
     Duration = 5
 })
-
--- Simple prompt for Discord (Optional, works on most executors)
-local request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-if request then
-    request({
-        Url = "http://127.0.0.1:6463/rpc?v=1",
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json",
-            ["Origin"] = "https://discord.com"
-        },
-        Body = game:GetService("HttpService"):JSONEncode({
-            cmd = "INVITE_BROWSER",
-            args = { code = "YOUR_CODE_HERE" }, -- Just the code (e.g. "AbC123")
-            nonce = game:GetService("HttpService"):GenerateGUID(false)
-        }),
-    })
-end
