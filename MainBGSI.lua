@@ -1,117 +1,85 @@
+-- [[ SILENCED BGSI - DUMMY/DRRAY STABLE ]] --
 
-local Library = nil
+-- 1. STABLE LOADER
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
 
+-- 2. CREATE WINDOW (Dummy UI Style)
+local Window = Library:Load("SILENCED BGSI", "Default")
 
-local function LoadUI()
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/vozoid/source.lua"))()
-    end)
-    if success then Library = result end
-end
-
-
-local retries = 0
-repeat
-    LoadUI()
-    if not Library then 
-        retries = retries + 1
-        task.wait(1) 
-    end
-until Library or retries > 5
-
-if not Library then
-    return game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "LOAD ERROR",
-        Text = "Potassium blocked the UI download. Try a VPN or restart.",
-        Duration = 10
-    })
-end
-
-
-local Window = Library:Load{
-    Name = "SILENCED BGSI",
-    SizeX = 500,
-    SizeY = 550,
-    Theme = "Midnight",
-}
-
-
+-- DATA
 local EggData = {
     ["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8),
-    ["Void Egg"] = CFrame.new(-146, 9, -26), ["Hell Egg"] = CFrame.new(-145, 9, -36)
+    ["Iceshard Egg"] = CFrame.new(-118, 9, 10), ["Spikey Egg"] = CFrame.new(-126, 9, 6),
+    ["Magma Egg"] = CFrame.new(-135, 9, 1), ["Crystal Egg"] = CFrame.new(-140, 9, -7),
+    ["Lunar Egg"] = CFrame.new(-144, 9, -16), ["Void Egg"] = CFrame.new(-146, 9, -26),
+    ["Hell Egg"] = CFrame.new(-145, 9, -36), ["Nightmare Egg"] = CFrame.new(-142, 9, -45),
+    ["Rainbow Egg"] = CFrame.new(-137, 9, -54), ["Snowman Egg"] = CFrame.new(-130, 9, -60),
+    ["Mining Egg"] = CFrame.new(-120, 9, -64), ["Cyber Egg"] = CFrame.new(-94, 9, -63),
+    ["Neon Egg"] = CFrame.new(-83, 10, -58), ["Infinity Egg"] = CFrame.new(-99, 8, -27),
+    ["New Years Egg"] = CFrame.new(83, 9, -13)
 }
 
+-- 3. CREATE PAGES (Tabs)
+local MainTab = Library:CreatePage("Main")
+local FarmTab = Library:CreatePage("Auto Farm")
+local EggTab = Library:CreatePage("Egg TPs")
 
-local MainTab = Window:Tab("Main")
-local FarmTab = Window:Tab("Auto Farm")
-local EggTab = Window:Tab("Teleports")
-
-
-local Rewards = MainTab:Section{ Name = "Rewards", Side = "Left" }
-Rewards:Button{
-    Name = "Redeem All Codes",
-    Callback = function()
-        local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "ogbgs", "release"}
-        for _, code in ipairs(codes) do
-            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
-            task.wait(0.1)
-        end
+-- [[ MAIN TAB ]] --
+MainTab:CreateButton("Redeem All Codes", function()
+    local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
+    for _, code in ipairs(codes) do
+        pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
+        task.wait(0.1)
     end
-}
+end)
 
+MainTab:CreateButton("Copy Discord Link", function()
+    setclipboard("https://discord.gg/YOUR_INVITE")
+end)
 
-local Farm = FarmTab:Section{ Name = "Farming", Side = "Left" }
+-- [[ AUTO FARM TAB ]] --
 local SellWait = 5
 
-Farm:Toggle({
-    Name = "Auto Blow Bubbles",
-    Callback = function(v)
-        getgenv().AutoBlow = v
-        task.spawn(function()
-            while getgenv().AutoBlow do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("BlowBubble") end)
-                task.wait(0.1)
-            end
-        end)
-    end
-})
+FarmTab:CreateToggle("Auto Blow Bubbles", function(state)
+    getgenv().AutoBlow = state
+    task.spawn(function()
+        while getgenv().AutoBlow do
+            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("BlowBubble") end)
+            task.wait(0.1)
+        end
+    end)
+end)
 
-Farm:Slider({
-    Name = "Sell Delay",
-    Min = 5, Max = 100, Default = 5,
-    Callback = function(v) SellWait = v end
-})
+FarmTab:CreateSlider("Sell Delay (Seconds)", 5, 100, 5, function(v)
+    SellWait = v
+end)
 
-Farm:Toggle({
-    Name = "Auto Sell",
-    Callback = function(v)
-        getgenv().AutoSell = v
-        task.spawn(function()
-            while getgenv().AutoSell do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("SellBubble") end)
-                task.wait(SellWait)
-            end
-        end)
-    end
-})
+FarmTab:CreateToggle("Auto Sell", function(state)
+    getgenv().AutoSell = state
+    task.spawn(function()
+        while getgenv().AutoSell do
+            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("SellBubble") end)
+            task.wait(SellWait)
+        end
+    end)
+end)
 
-
-local EggSec = EggTab:Section{ Name = "Egg TP", Side = "Left" }
+-- [[ EGG TELEPORTS ]] --
 local SelectedEgg = "Common Egg"
+local EggNames = {}
+for name, _ in pairs(EggData) do table.insert(EggNames, name) end
+table.sort(EggNames)
 
-EggSec:Dropdown({
-    Name = "Select Egg",
-    Content = {"Common Egg", "Spotted Egg", "Void Egg", "Hell Egg"},
-    Callback = function(v) SelectedEgg = v end
-})
+EggTab:CreateDropdown("Select Egg", EggNames, function(v)
+    SelectedEgg = v
+end)
 
-EggSec:Button({
-    Name = "Teleport",
-    Callback = function()
-        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp and EggData[SelectedEgg] then hrp.CFrame = EggData[SelectedEgg] end
+EggTab:CreateButton("Teleport to Selected Egg", function()
+    local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if hrp and EggData[SelectedEgg] then
+        hrp.CFrame = EggData[SelectedEgg]
     end
-})
+end)
 
-
+-- INITIALIZE
 setclipboard("https://discord.gg/YOUR_INVITE")
