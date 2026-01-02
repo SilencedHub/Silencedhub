@@ -1,5 +1,5 @@
 -- [[ SILENCED BGSI MASTER SCRIPT - RAYFIELD EDITION ]] --
--- Master Version: Added Christmas Event Features
+-- Master Version: Added Auto Playtime Rewards & Event Teleport
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
@@ -22,7 +22,8 @@ getgenv().Config = { Webhook_enabled = false, Webhook = "", Secret_Only = true }
 local AutoBubble, AutoSell, AutoCollect = false, false, false
 local AutoSpamE = false
 local AutoBuyGum, AutoBuyUpgrades = false, false
-local AutoOpenPresents, AutoFestiveSpin = false, false -- Event States
+local AutoPlaytime = false
+local AutoOpenPresents, AutoFestiveSpin = false, false 
 local SellCooldown = 5
 local SelectedEgg = "Common Egg"
 
@@ -36,53 +37,32 @@ local EggPoints = {["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFr
 local MainTab = Window:CreateTab("Main", 4483362458)
 local FarmTab = Window:CreateTab("Auto Farm", 4483362458)
 local EggTab = Window:CreateTab("Eggs", 4483362458)
-local EventTab = Window:CreateTab("Event", 4483362458) -- Event Tab is now active
+local EventTab = Window:CreateTab("Event", 4483362458) 
 local TeleportTab = Window:CreateTab("Teleports", 4483362458)
 local WebhookTab = Window:CreateTab("Webhook", 4483362458)
 
 -------------------------------------------------------------------------------
--- EVENT TAB (Christmas Features)
+-- MAIN TAB (Added Auto Playtime)
 -------------------------------------------------------------------------------
-EventTab:CreateSection("Christmas Event 2025/2026")
-
-EventTab:CreateToggle({
-    Name = "Auto Open Presents",
+MainTab:CreateSection("Auto Rewards")
+MainTab:CreateToggle({
+    Name = "Auto Playtime Rewards",
     CurrentValue = false,
-    Flag = "AutoPresents",
+    Flag = "AutoPlaytime",
     Callback = function(Value)
-        AutoOpenPresents = Value
+        AutoPlaytime = Value
         task.spawn(function()
             local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
-            while AutoOpenPresents do
-                -- Claims various gift tiers based on the game's remote logic
-                pcall(function() RF:InvokeServer("ClaimGift", 1) end)
-                pcall(function() RF:InvokeServer("ClaimGift", 2) end)
-                pcall(function() RF:InvokeServer("ClaimGift", 3) end)
-                task.wait(5)
+            while AutoPlaytime do
+                for i = 1, 12 do -- Tries to claim all 12 potential gift slots
+                    pcall(function() RF:InvokeServer("ClaimPlaytimeGift", i) end)
+                end
+                task.wait(30)
             end
         end)
     end,
 })
 
-EventTab:CreateToggle({
-    Name = "Auto Festive Wheel Spin",
-    CurrentValue = false,
-    Flag = "AutoFestiveSpin",
-    Callback = function(Value)
-        AutoFestiveSpin = Value
-        task.spawn(function()
-            local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
-            while AutoFestiveSpin do
-                pcall(function() RF:InvokeServer("SpinFestiveWheel") end)
-                task.wait(5)
-            end
-        end)
-    end,
-})
-
--------------------------------------------------------------------------------
--- MAIN TAB
--------------------------------------------------------------------------------
 MainTab:CreateSection("Auto Shop")
 MainTab:CreateToggle({
     Name = "Auto Buy Gum",
@@ -220,6 +200,51 @@ EggTab:CreateButton({
     Callback = function()
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         if hrp and EggPoints[SelectedEgg] then hrp.CFrame = EggPoints[SelectedEgg] + Vector3.new(0, 3, 0) end
+    end,
+})
+
+-------------------------------------------------------------------------------
+-- EVENT TAB (Christmas)
+-------------------------------------------------------------------------------
+EventTab:CreateSection("Event Teleports")
+EventTab:CreateButton({
+    Name = "Teleport to Christmas Island",
+    Callback = function()
+        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if hrp then hrp.CFrame = CFrame.new(78, 9, -15) end -- Approx. Christmas Island Pos
+    end,
+})
+
+EventTab:CreateSection("Farming")
+EventTab:CreateToggle({
+    Name = "Auto Open Presents",
+    CurrentValue = false,
+    Flag = "AutoPresents",
+    Callback = function(Value)
+        AutoOpenPresents = Value
+        task.spawn(function()
+            local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
+            while AutoOpenPresents do
+                for i = 1, 3 do pcall(function() RF:InvokeServer("ClaimGift", i) end) end
+                task.wait(5)
+            end
+        end)
+    end,
+})
+
+EventTab:CreateToggle({
+    Name = "Auto Festive Wheel Spin",
+    CurrentValue = false,
+    Flag = "AutoFestiveSpin",
+    Callback = function(Value)
+        AutoFestiveSpin = Value
+        task.spawn(function()
+            local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
+            while AutoFestiveSpin do
+                pcall(function() RF:InvokeServer("SpinFestiveWheel") end)
+                task.wait(5)
+            end
+        end)
     end,
 })
 
