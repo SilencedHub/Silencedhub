@@ -1,24 +1,71 @@
-local Maclib = nil
-local success, errorMessage = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/x2Swiftz/UI-Library/refs/heads/main/Libraries/Maclib%20-%20Library.lua"))()
-end)
+-- [[ SILENCED BGSI - MACLIB STABLE ]] --
 
--- Retry loop to wait for Potassium to finish the download
-local retries = 0
-while (not success or not Maclib) and retries < 15 do
-    task.wait(0.5)
-    retries = retries + 1
-    success, Maclib = pcall(function()
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/x2Swiftz/UI-Library/refs/heads/main/Libraries/Maclib%20-%20Library.lua"))()
+local Maclib = nil
+local LibURL = "https://raw.githubusercontent.com/x2Swiftz/UI-Library/refs/heads/main/Libraries/Maclib%20-%20Library.lua"
+
+-- POWERFUL LOADER: Prevents the "nil" error from your screenshot
+for i = 1, 15 do
+    local success, result = pcall(function()
+        return loadstring(game:HttpGet(LibURL))()
     end)
+    if success and type(result) == "table" then
+        Maclib = result
+        break
+    end
+    task.wait(1) -- Wait 1 second between retries
 end
 
 if not Maclib then
-    warn("Failed to load Maclib. Executor blocked the request.")
-    return
+    return game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Loading Error",
+        Text = "Executor failed to fetch the UI. Please restart and try again.",
+        Duration = 10
+    })
 end
 
--- 1. WINDOW CREATION
+-- [[ WEBHOOK CONFIG ]] --
+local WebhookURL = "YOUR_WEBHOOK_URL_HERE"
+
+local function SendHatchWebhook(petName, petStats, isTest)
+    local player = game.Players.LocalPlayer
+    local stats = player.leaderstats
+    
+    local data = {
+        ["content"] = isTest and "Webhook Test" or "@everyone **SECRET HATCHED!**",
+        ["embeds"] = {{
+            ["title"] = "||" .. player.Name .. "|| hatched a " .. petName,
+            ["color"] = isTest and 0x3498db or 0xFFD700,
+            ["fields"] = {
+                {
+                    ["name"] = "User Info:",
+                    ["value"] = "🧼 **Current Bubbles:** " .. stats.Bubbles.Value .. 
+                               "\n💰 **Coins:** " .. stats.Coins.Value .. 
+                               "\n💎 **Gems:** " .. stats.Gems.Value,
+                    ["inline"] = false
+                },
+                {
+                    ["name"] = "Pet Info:",
+                    ["value"] = petStats,
+                    ["inline"] = false
+                }
+            },
+            ["footer"] = {["text"] = "Silenced BGSI • by discord.gg/eaAKTc64s"},
+            ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
+        }}
+    }
+
+    local req = (syn and syn.request) or (http and http.request) or http_request or request
+    if req then
+        req({
+            Url = WebhookURL,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = game:GetService("HttpService"):JSONEncode(data)
+        })
+    end
+end
+
+-- [[ WINDOW ]] --
 local Window = Maclib:Window({
     Title = "SILENCED BGSI",
     Subtitle = "Bubble Gum Simulator",
@@ -26,98 +73,55 @@ local Window = Maclib:Window({
     DragStyle = 1
 })
 
--- DATA
-local EggData = {
-    ["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8),
-    ["Iceshard Egg"] = CFrame.new(-118, 9, 10), ["Spikey Egg"] = CFrame.new(-126, 9, 6),
-    ["Magma Egg"] = CFrame.new(-135, 9, 1), ["Crystal Egg"] = CFrame.new(-140, 9, -7),
-    ["Lunar Egg"] = CFrame.new(-144, 9, -16), ["Void Egg"] = CFrame.new(-146, 9, -26),
-    ["Hell Egg"] = CFrame.new(-145, 9, -36), ["Nightmare Egg"] = CFrame.new(-142, 9, -45),
-    ["Rainbow Egg"] = CFrame.new(-137, 9, -54), ["Snowman Egg"] = CFrame.new(-130, 9, -60),
-    ["Mining Egg"] = CFrame.new(-120, 9, -64), ["Cyber Egg"] = CFrame.new(-94, 9, -63),
-    ["Neon Egg"] = CFrame.new(-83, 10, -58), ["Infinity Egg"] = CFrame.new(-99, 8, -27),
-    ["New Years Egg"] = CFrame.new(83, 9, -13)
+-- [[ TABS ]] --
+local Tabs = {
+    Main = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" }),
+    Farm = Window:Tab({ Name = "Auto Farm", Image = "rbxassetid://10709819149" })
 }
 
--- 2. TABS
-local MainTab = Window:Tab({ Name = "Main", Image = "rbxassetid://10734950309" })
-local FarmTab = Window:Tab({ Name = "Auto Farm", Image = "rbxassetid://10709819149" })
-local EggTab = Window:Tab({ Name = "Teleports", Image = "rbxassetid://10709761066" })
-
 -- [[ MAIN TAB ]] --
-local MainGroup = MainTab:Section({ Name = "Utility" })
+local MainGroup = Tabs.Main:Section({ Name = "Webhook Tools" })
 
 MainGroup:Button({
-    Name = "Redeem All Codes",
+    Name = "Send Test Webhook",
     Callback = function()
-        local codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
-        for _, code in ipairs(codes) do
-            pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction:InvokeServer("RedeemCode", code) end)
-            task.wait(0.1)
+        if WebhookURL ~= "YOUR_WEBHOOK_URL_HERE" then
+            SendHatchWebhook("Secret Santa's Hat", "❄️ **Snowflakes:** +140\n💎 **Gems:** +130\n🧼 **Bubbles:** +7.8K", true)
+        else
+            Maclib:Notify({Title = "Error", Content = "Paste your Webhook URL into the script first!"})
         end
     end
 })
 
--- [[ AUTO FARM TAB ]] --
-local FarmGroup = FarmTab:Section({ Name = "Farming Settings" })
-local SellWait = 5
+-- [[ FARM TAB ]] --
+local FarmGroup = Tabs.Farm:Section({ Name = "Settings" })
 
 FarmGroup:Toggle({
-    Name = "Auto Blow Bubbles",
+    Name = "Hide Hatch Animation",
     Default = false,
     Callback = function(Value)
-        getgenv().AutoBlow = Value
+        getgenv().HideHatch = Value
         task.spawn(function()
-            while getgenv().AutoBlow do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("BlowBubble") end)
+            while getgenv().HideHatch do
+                local pGui = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+                local ui = pGui and (pGui:FindFirstChild("HatchUI") or pGui:FindFirstChild("EggHatch"))
+                if ui then ui.Enabled = false end
                 task.wait(0.1)
             end
         end)
     end
 })
 
-FarmGroup:Slider({
-    Name = "Sell Interval",
-    Min = 5, Max = 100, Default = 5,
-    Callback = function(Value) SellWait = Value end
-})
-
 FarmGroup:Toggle({
-    Name = "Auto Sell",
+    Name = "Auto Secret Webhook",
     Default = false,
-    Callback = function(Value)
-        getgenv().AutoSell = Value
-        task.spawn(function()
-            while getgenv().AutoSell do
-                pcall(function() game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent:FireServer("SellBubble") end)
-                task.wait(SellWait)
-            end
-        end)
+    Callback = function(Value) getgenv().SecretWebhook = Value end
+})
+
+-- AUTO-DETECTION: Sends webhook on real secret hatch
+game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteEvent.OnClientEvent:Connect(function(name, data)
+    if getgenv().SecretWebhook and name == "OpenEgg" and data.Rarity == "Secret" then
+        local statsStr = "🔥 **Multiplier:** x" .. (data.Multiplier or "1") .. "\n⚡ **Speed:** " .. (data.Speed or "1")
+        SendHatchWebhook(data.PetName, statsStr, false)
     end
-})
-
--- [[ EGG TAB ]] --
-local EggGroup = EggTab:Section({ Name = "Egg Locations" })
-local SelectedEgg = "Common Egg"
-local EggNames = {}
-for name, _ in pairs(EggData) do table.insert(EggNames, name) end
-table.sort(EggNames)
-
-EggGroup:Dropdown({
-    Name = "Select Egg",
-    Items = EggNames,
-    Default = "Common Egg",
-    Callback = function(Value) SelectedEgg = Value end
-})
-
-EggGroup:Button({
-    Name = "Teleport",
-    Callback = function()
-        local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp and EggData[SelectedEgg] then
-            hrp.CFrame = EggData[SelectedEgg]
-        end
-    end
-})
-
-setclipboard("https://discord.gg/YOUR_INVITE")
+end)
