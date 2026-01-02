@@ -1,6 +1,4 @@
--- [[ SILENCED BGSI - POTASSIUM STABLE ]] --
 
--- Ensure game is ready before execution
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
