@@ -1,8 +1,30 @@
 -- [[ SILENCED BGSI MASTER SCRIPT - RAYFIELD EDITION ]] --
 -- Master Version: Added Auto Playtime Rewards & Event Teleport
+-- Features: Anti-AFK (Toggleable), Custom Logo, Auto-Farm, Webhooks
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 
+-- [[ 1. GLOBAL STATES & PROTECTION ]] --
+getgenv().Config = { Webhook_enabled = false, Webhook = "", Secret_Only = true }
+local AntiAFK_Enabled = false -- Protection Switch 🛡️
+local AutoBubble, AutoSell, AutoCollect = false, false, false
+local AutoSpamE = false
+local AutoBuyGum, AutoBuyUpgrades = false, false
+local AutoPlaytime = false
+local AutoOpenPresents, AutoFestiveSpin = false, false 
+local SellCooldown = 5
+local SelectedEgg = "Common Egg"
+
+-- [[ 2. THE STEALTH ENGINE ]] --
+game:GetService("Players").LocalPlayer.Idled:Connect(function()
+    if AntiAFK_Enabled then
+        local VirtualUser = game:GetService("VirtualUser")
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+    end
+end)
+
+-- [[ 3. UI INITIALIZATION ]] --
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
@@ -14,37 +36,41 @@ local Window = Rayfield:CreateWindow({
         FolderName = "SilencedHub",
         FileName = "MasterConfig"
     },
-    KeySystem = false
+    KeySystem = false,
+    ImageId = "rbxthumb://type=Asset&id=93269097446618&w=420&h=420" -- Your Logo! 🟦
 })
 
--- [[ GLOBAL STATES ]] --
-getgenv().Config = { Webhook_enabled = false, Webhook = "", Secret_Only = true }
-local AutoBubble, AutoSell, AutoCollect = false, false, false
-local AutoSpamE = false
-local AutoBuyGum, AutoBuyUpgrades = false, false
-local AutoPlaytime = false
-local AutoOpenPresents, AutoFestiveSpin = false, false 
-local SellCooldown = 5
-local SelectedEgg = "Common Egg"
-
--- [[ DATA TABLES ]] --
+-- [[ 4. DATA TABLES ]] --
 local Codes = {"maidnert", "ripsoulofplant", "halloween", "superpuff", "cornmaze", "autumn", "obby", "retroslop", "milestones", "season7", "bugfix", "plasma", "update16", "season6", "fishfix", "onemorebonus", "fishe", "world3", "update15", "update13", "update12", "update11", "update10", "update9", "update8", "update7", "update6", "update5", "update4", "update3", "update2", "sylentlyssorry", "easter", "lucky", "release", "ogbgs", "adminabuse", "2xinfinity", "elf", "jolly", "christmas", "throwback"}
 local World1Points = {Spawn = CFrame.new(58, 22, -71), ["Floating Island"] = CFrame.new(-16, 423, 143), ["Outer Space"] = CFrame.new(41, 2663, -7), Twilight = CFrame.new(-78, 6862, 88), ["The Void"] = CFrame.new(16, 10146, 151), Zen = CFrame.new(36, 15971, 41)}
 local World2Points = {Spawn = CFrame.new(9981, 26, 172), ["Dice Island"] = CFrame.new(9900, 2907, 208), ["Minecart Forest"] = CFrame.new(9882, 7681, 203), ["Robot Factory"] = CFrame.new(9887, 13408, 227), ["Hyperwave Island"] = CFrame.new(9885, 20088, 226)}
 local EggPoints = {["Common Egg"] = CFrame.new(-83, 9, 3), ["Spotted Egg"] = CFrame.new(-94, 9, 8), ["Iceshard Egg"] = CFrame.new(-118, 9, 10), ["Spikey Egg"] = CFrame.new(-126, 9, 6), ["Magma Egg"] = CFrame.new(-135, 9, 1), ["Crystal Egg"] = CFrame.new(-140, 9, -7), ["Lunar Egg"] = CFrame.new(-144, 9, -16), ["Void Egg"] = CFrame.new(-146, 9, -26), ["Hell Egg"] = CFrame.new(-145, 9, -36), ["Nightmare Egg"] = CFrame.new(-142, 9, -45), ["Rainbow Egg"] = CFrame.new(-137, 9, -54), ["Snowman Egg"] = CFrame.new(-130, 9, -60), ["Mining Egg"] = CFrame.new(-120, 9, -64), ["Cyber Egg"] = CFrame.new(-94, 9, -63), ["Neon Egg"] = CFrame.new(-83, 10, -58), ["Infinity Egg"] = CFrame.new(-99, 8, -27), ["New Years Egg"] = CFrame.new(83, 9, -13)}
 
--- [[ TABS ]] --
-local MainTab = Window:CreateTab("Main", 4483362458)
-local FarmTab = Window:CreateTab("Auto Farm", 4483362458)
-local EggTab = Window:CreateTab("Eggs", 4483362458)
-local EventTab = Window:CreateTab("Event", 4483362458) 
-local TeleportTab = Window:CreateTab("Teleports", 4483362458)
-local WebhookTab = Window:CreateTab("Webhook", 4483362458)
+-- [[ 5. TABS SETUP ]] --
+local MainTab = Window:CreateTab("Main 🏠", 4483362458)
+local FarmTab = Window:CreateTab("Auto Farm 🚜", 4483362458)
+local EggTab = Window:CreateTab("Eggs 🥚", 4483362458)
+local EventTab = Window:CreateTab("Event 🎄", 4483362458) 
+local TeleportTab = Window:CreateTab("Teleports 🌍", 4483362458)
+local WebhookTab = Window:CreateTab("Webhook 💬", 4483362458)
 
 -------------------------------------------------------------------------------
--- MAIN TAB (Added Auto Playtime)
+-- MAIN TAB (Stability & Rewards)
 -------------------------------------------------------------------------------
-MainTab:CreateSection("Auto Rewards")
+MainTab:CreateSection("Stability & Protection 🛡️")
+MainTab:CreateToggle({
+    Name = "Anti-AFK Protection",
+    CurrentValue = false,
+    Flag = "AntiAFK_Toggle", 
+    Callback = function(Value)
+        AntiAFK_Enabled = Value
+        if AntiAFK_Enabled then
+            Rayfield:Notify({Title = "Engine Running", Content = "Anti-AFK Protection is ACTIVE.", Duration = 4})
+        end
+    end,
+})
+
+MainTab:CreateSection("Auto Rewards 🎁")
 MainTab:CreateToggle({
     Name = "Auto Playtime Rewards",
     CurrentValue = false,
@@ -54,16 +80,14 @@ MainTab:CreateToggle({
         task.spawn(function()
             local RF = game:GetService("ReplicatedStorage").Shared.Framework.Network.Remote.RemoteFunction
             while AutoPlaytime do
-                for i = 1, 12 do -- Tries to claim all 12 potential gift slots
-                    pcall(function() RF:InvokeServer("ClaimPlaytimeGift", i) end)
-                end
+                for i = 1, 12 do pcall(function() RF:InvokeServer("ClaimPlaytimeGift", i) end) end
                 task.wait(30)
             end
         end)
     end,
 })
 
-MainTab:CreateSection("Auto Shop")
+MainTab:CreateSection("Auto Shop 🛒")
 MainTab:CreateToggle({
     Name = "Auto Buy Gum",
     CurrentValue = false,
@@ -90,7 +114,7 @@ MainTab:CreateToggle({
     end,
 })
 
-MainTab:CreateSection("Codes")
+MainTab:CreateSection("Codes 🔑")
 MainTab:CreateButton({
     Name = "Redeem All Codes",
     Callback = function()
@@ -102,7 +126,7 @@ MainTab:CreateButton({
 -------------------------------------------------------------------------------
 -- AUTO FARM TAB
 -------------------------------------------------------------------------------
-FarmTab:CreateSection("Farming")
+FarmTab:CreateSection("Farming 🌾")
 FarmTab:CreateToggle({
     Name = "Auto Bubble",
     CurrentValue = false,
@@ -167,7 +191,7 @@ FarmTab:CreateToggle({
 -------------------------------------------------------------------------------
 -- EGGS TAB
 -------------------------------------------------------------------------------
-EggTab:CreateSection("Hatching")
+EggTab:CreateSection("Hatching 🐥")
 EggTab:CreateToggle({
     Name = "Auto Spam E (Hold E)",
     CurrentValue = false,
@@ -186,7 +210,7 @@ EggTab:CreateToggle({
     end,
 })
 
-EggTab:CreateSection("Egg Teleports")
+EggTab:CreateSection("Egg Teleports 📍")
 EggTab:CreateDropdown({
     Name = "Select Egg",
     Options = {"Common Egg","Spotted Egg","Iceshard Egg","Spikey Egg","Magma Egg","Crystal Egg","Lunar Egg","Void Egg","Hell Egg","Nightmare Egg","Rainbow Egg","Snowman Egg","Mining Egg","Cyber Egg","Neon Egg","Infinity Egg","New Years Egg"},
@@ -206,16 +230,16 @@ EggTab:CreateButton({
 -------------------------------------------------------------------------------
 -- EVENT TAB (Christmas)
 -------------------------------------------------------------------------------
-EventTab:CreateSection("Event Teleports")
+EventTab:CreateSection("Event Teleports 🚠")
 EventTab:CreateButton({
     Name = "Teleport to Christmas Island",
     Callback = function()
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if hrp then hrp.CFrame = CFrame.new(78, 9, -15) end -- Approx. Christmas Island Pos
+        if hrp then hrp.CFrame = CFrame.new(78, 9, -15) end
     end,
 })
 
-EventTab:CreateSection("Farming")
+EventTab:CreateSection("Event Farming ❄️")
 EventTab:CreateToggle({
     Name = "Auto Open Presents",
     CurrentValue = false,
@@ -251,7 +275,7 @@ EventTab:CreateToggle({
 -------------------------------------------------------------------------------
 -- TELEPORTS TAB
 -------------------------------------------------------------------------------
-TeleportTab:CreateSection("World 1")
+TeleportTab:CreateSection("World 1 🌎")
 for name, cf in pairs(World1Points) do
     TeleportTab:CreateButton({Name = "Go to " .. name, Callback = function() 
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
@@ -259,7 +283,7 @@ for name, cf in pairs(World1Points) do
     end})
 end
 
-TeleportTab:CreateSection("World 2")
+TeleportTab:CreateSection("World 2 🌌")
 for name, cf in pairs(World2Points) do
     TeleportTab:CreateButton({Name = "Go to " .. name, Callback = function() 
         local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
@@ -270,7 +294,7 @@ end
 -------------------------------------------------------------------------------
 -- WEBHOOK TAB
 -------------------------------------------------------------------------------
-WebhookTab:CreateSection("Discord Webhook")
+WebhookTab:CreateSection("Discord Webhook 📡")
 WebhookTab:CreateInput({
     Name = "Webhook URL",
     PlaceholderText = "Paste Discord Link",
@@ -294,7 +318,14 @@ WebhookTab:CreateButton({
                 Url = getgenv().Config.Webhook,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
-                Body = game:GetService("HttpService"):JSONEncode({embeds={{title="Webhook Test", description="Webhook is working!"}}})
+                Body = game:GetService("HttpService"):JSONEncode({
+                    embeds={{
+                        title="Webhook Test ✅", 
+                        description="Your Silenced Hub webhook is working!",
+                        color = 3447003,
+                        thumbnail = { url = "https://www.roblox.com/asset-thumbnail/image?assetId=93269097446618&width=420&height=420&format=png" }
+                    }}
+                })
             })
         end
     end,
